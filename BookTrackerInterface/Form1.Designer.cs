@@ -64,6 +64,7 @@
             bookTitle.Name = "bookTitle";
             bookTitle.Size = new Size(226, 23);
             bookTitle.TabIndex = 1;
+            bookTitle.TextAlign = HorizontalAlignment.Right;
             // 
             // contextMenuStrip1
             // 
@@ -79,7 +80,6 @@
             labelTitle.Size = new Size(38, 20);
             labelTitle.TabIndex = 3;
             labelTitle.Text = "Title";
-            labelTitle.Click += label1_Click;
             // 
             // labelSeries
             // 
@@ -112,10 +112,11 @@
             // 
             // bookNum
             // 
-            bookNum.Location = new Point(176, 163);
+            bookNum.Location = new Point(321, 163);
             bookNum.Name = "bookNum";
-            bookNum.Size = new Size(177, 23);
+            bookNum.Size = new Size(32, 23);
             bookNum.TabIndex = 7;
+            bookNum.TextAlign = HorizontalAlignment.Right;
             // 
             // bookAuthor
             // 
@@ -142,6 +143,7 @@
             bookDate.Name = "bookDate";
             bookDate.Size = new Size(177, 23);
             bookDate.TabIndex = 11;
+            bookDate.TextAlign = HorizontalAlignment.Right;
             // 
             // labelDate
             // 
@@ -188,6 +190,7 @@
             bookGenre.Name = "bookGenre";
             bookGenre.Size = new Size(177, 23);
             bookGenre.TabIndex = 17;
+            bookGenre.TextAlign = HorizontalAlignment.Right;
             // 
             // listBookGenre
             // 
