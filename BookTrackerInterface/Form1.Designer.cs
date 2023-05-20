@@ -50,13 +50,13 @@
             // 
             // bSubmit
             // 
-            bSubmit.Location = new Point(277, 498);
+            bSubmit.Location = new Point(277, 489);
             bSubmit.Name = "bSubmit";
             bSubmit.Size = new Size(75, 23);
             bSubmit.TabIndex = 0;
             bSubmit.Text = "Submit";
             bSubmit.UseVisualStyleBackColor = true;
-            bSubmit.Click += button1_Click;
+            bSubmit.Click += Submit_Click;
             // 
             // bookTitle
             // 
@@ -94,11 +94,12 @@
             // bookSeries
             // 
             bookSeries.FormattingEnabled = true;
-            bookSeries.Items.AddRange(new object[] { "Harry Potter", "Red Rising" });
             bookSeries.Location = new Point(127, 97);
             bookSeries.Name = "bookSeries";
             bookSeries.Size = new Size(226, 23);
             bookSeries.TabIndex = 5;
+            bookSeries.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            bookSeries.AutoCompleteSource = AutoCompleteSource.ListItems;
             // 
             // labelBookNum
             // 
@@ -121,11 +122,12 @@
             // bookAuthor
             // 
             bookAuthor.FormattingEnabled = true;
-            bookAuthor.Items.AddRange(new object[] { "J.K. Rowling", "Pierce Brown" });
             bookAuthor.Location = new Point(127, 231);
             bookAuthor.Name = "bookAuthor";
             bookAuthor.Size = new Size(226, 23);
             bookAuthor.TabIndex = 9;
+            bookAuthor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            bookAuthor.AutoCompleteSource = AutoCompleteSource.ListItems;
             // 
             // labelAuthor
             // 
@@ -136,6 +138,7 @@
             labelAuthor.Size = new Size(54, 20);
             labelAuthor.TabIndex = 8;
             labelAuthor.Text = "Author";
+
             // 
             // bookDate
             // 
@@ -158,11 +161,14 @@
             // bookMedium
             // 
             bookMedium.FormattingEnabled = true;
-            bookMedium.Items.AddRange(new object[] { "Physical", "Audiobook", "Kindle", "Manga", "Comic" });
+            //bookMedium.Items.AddRange(new object[] { "Physical", "Audiobook", "Kindle", "Manga", "Comic" });
             bookMedium.Location = new Point(233, 420);
             bookMedium.Name = "bookMedium";
             bookMedium.Size = new Size(119, 23);
             bookMedium.TabIndex = 13;
+            bookMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            bookMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //bookMedium.A
             // 
             // labelMedium
             // 
@@ -196,10 +202,9 @@
             // 
             listBookGenre.FormattingEnabled = true;
             listBookGenre.ItemHeight = 15;
-            listBookGenre.Items.AddRange(new object[] { "Fantasy", "Sci-Fi", "Humor", "Cyberpunk" });
             listBookGenre.Location = new Point(380, 358);
             listBookGenre.Name = "listBookGenre";
-            listBookGenre.Size = new Size(120, 94);
+            listBookGenre.Size = new Size(120, 154);
             listBookGenre.TabIndex = 18;
             listBookGenre.Visible = false;
             // 

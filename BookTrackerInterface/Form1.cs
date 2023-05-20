@@ -15,20 +15,141 @@ namespace BookTrackerInterface
         {
             InitializeComponent();
 
-            bookGenre.Click += bookGenre_Click;
-            listBookGenre.SelectedIndexChanged += listBookGenre_SelectedIndexChanged;
 
-            listBookGenre.LostFocus += listBookGenre_LostFocus;
+            //Genre Box Setup
+            FillGenreListBox(); //Fills out from database
+            bookGenre.Click += bookGenre_Click; //on click make list visable
+            listBookGenre.SelectedIndexChanged += listBookGenre_SelectedIndexChanged; //as items are selected in the listbox add them to the textbox
+            listBookGenre.SelectionMode = SelectionMode.MultiExtended; //allow for multi seletion with ctrl or shift
 
-            listBookGenre.SelectionMode = SelectionMode.MultiExtended;
+            //Medium Box Setup from database
+            FillMediumListBox(); 
+            //Series Box Setup from database
+            FillSeriesListBox(); 
+            //Author Box Setup from database
+            FillAuthorListBox(); 
+
             bookDate.Validating += bookDate_Validating;
             bookNum.Validating += bookNum_Validating;
         }
 
+        //####################################################################################
+        //Queries the Genres table in database and fills out the listBookGenre box
+        //####################################################################################
+        private void FillGenreListBox()
+        {
+            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+            string query = "SELECT name FROM genres ORDER BY name ASC";
+
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            {
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (MySql.Data.MySqlClient.MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string genreName = reader.GetString("name");
+                            listBookGenre.Items.Add(genreName); // Add each genre name to the ListBox
+                        }
+                    }
+
+                    conn.Close(); // Close the database connection
+                }
+            }
+        }
+
+        //####################################################################################
+        //Queries the Mediums table in database and fills out the bookMedium combox
+        //####################################################################################
+        private void FillMediumListBox()
+        {
+            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+            string query = "SELECT medium_name FROM mediums ORDER BY medium_name ASC";
+
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            {
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (MySql.Data.MySqlClient.MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string mediumName = reader.GetString("medium_name");
+                            bookMedium.Items.Add(mediumName); // Add each meidum name to the ListBox
+                        }
+                    }
+
+                    conn.Close(); // Close the database connection
+                }
+            }
+        }
+
+        //####################################################################################
+        //Queries the Series column in the Books table and fills out the bookSeries combox
+        //####################################################################################
+        private void FillSeriesListBox()
+        {
+            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+            string query = "SELECT DISTINCT series_name FROM books WHERE series_name <> '' ORDER BY series_name ASC";
+
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            {
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (MySql.Data.MySqlClient.MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string seriesName = reader.GetString("series_name");
+                            bookSeries.Items.Add(seriesName); // Add each meidum name to the ListBox
+                        }
+                    }
+                    conn.Close(); // Close the database connection
+                }
+            }
+        }
+
+        //####################################################################################
+        //Queries the Author column in the Books table and fills out the bookSeries combox
+        //####################################################################################
+        private void FillAuthorListBox()
+        {
+            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+            string query = "SELECT DISTINCT author FROM books WHERE author <> '' ORDER BY author ASC";
+
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            {
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (MySql.Data.MySqlClient.MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string authorName = reader.GetString("author");
+                            bookAuthor.Items.Add(authorName); // Add each meidum name to the ListBox
+                        }
+                    }
+                    conn.Close(); // Close the database connection
+                }
+            }
+        }
+
+        //####################################################################################
+        //Validates that the string in bookNum is a numerical value or blank (null)
+        //####################################################################################
         private void bookNum_Validating(object? sender, CancelEventArgs e)
         {
             string enteredValue = bookNum.Text.Trim();
-            if (!int.TryParse(enteredValue, out _))
+            if (!int.TryParse(enteredValue, out _) && enteredValue != "")
             {
                 // Display an error message or perform necessary actions when the value is not a valid integer
                 MessageBox.Show("Please enter a numerical value for the book number.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -37,31 +158,39 @@ namespace BookTrackerInterface
             }
         }
 
+        //####################################################################################
+        //Unique behavior for genre
+        //  - hides listbox and makes appear when textbox is clicked
+        //  - Concatinates multiclick choices into single string with ',' separator
+        //  - rehides listbox when focus is lost
+        //####################################################################################
         private bool listBoxVisible = false;
-
         private void bookGenre_Click(object sender, EventArgs e)
         {
             listBoxVisible = !listBoxVisible;
             listBookGenre.Visible = listBoxVisible;
         }
-
         private void listBookGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
             bookGenre.Text = string.Join(",", listBookGenre.SelectedItems.Cast<string>());
         }
-
         private void listBookGenre_LostFocus(object sender, EventArgs e)
         {
             listBoxVisible = false;
             listBookGenre.Visible = listBoxVisible;
         }
 
+        //####################################################################################
+        //Auto sets date box to current date when form is loaded
+        //####################################################################################
         private void Form1_Load(object sender, EventArgs e)
         {
             bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
-        //Validates that it was a Date in YYYY-MM-DD format in the Date textbo
+        //####################################################################################
+        //Validates that there is a Date in YYYY-MM-DD format in the Date textbox
+        //####################################################################################
         private void bookDate_Validating(object sender, CancelEventArgs e)
         {
             string enteredDate = bookDate.Text.Trim();
@@ -73,33 +202,80 @@ namespace BookTrackerInterface
             }
         }
 
-        //Adds new Series Name if Name isn't in List
-        private void bookSeries_SelectedIndexChanged(object sender, EventArgs e)
+        //####################################################################################
+        //Adds new genre if genre isn't in List
+        //####################################################################################
+        private void bookGenre_AddNew(string inputGenre)
         {
-            if (bookSeries.SelectedItem != null && bookSeries.SelectedIndex == bookSeries.Items.Count - 1)
+            //MySql.Data.MySqlClient.MySqlConnection conn;
+            string myConnectionString;
+
+            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker"; 
+
+            string insertGenreSql = "INSERT INTO genres (name) " +
+                                        "VALUES (@genre)";
+
+            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
             {
-                string newItem = bookSeries.SelectedItem.ToString();
-                // Process the new item
-                // Example: Add the new item to the list
-                bookSeries.Items.Insert(bookSeries.Items.Count - 1, newItem);
-                bookSeries.SelectedIndex = bookSeries.Items.Count - 2;
+                connection.Open();
+
+                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertGenreSql, connection))
+                {
+                    command.Parameters.AddWithValue("@genre", inputGenre);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("New Genre added to Genres");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add new genre");
+                    }
+                }
+                connection.Close();
             }
         }
 
-        //Adds new Authro Name if Name isn't in List
-        private void bookAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        //####################################################################################
+        //Adds new medium if medium isn't in List
+        //####################################################################################
+        private void bookMedium_AddNew(string inputMedium)
         {
-            if (bookAuthor.SelectedItem != null && bookAuthor.SelectedIndex == bookAuthor.Items.Count - 1)
+            //MySql.Data.MySqlClient.MySqlConnection conn;
+            string myConnectionString;
+
+            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+
+            string insertGenreSql = "INSERT INTO mediums (medium_name) " +
+                                        "VALUES (@medium)";
+
+            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
             {
-                string newItem = bookAuthor.SelectedItem.ToString();
-                // Process the new item
-                // Example: Add the new item to the list
-                bookAuthor.Items.Insert(bookAuthor.Items.Count - 1, newItem);
-                bookAuthor.SelectedIndex = bookAuthor.Items.Count - 2;
+                connection.Open();
+
+                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertGenreSql, connection))
+                {
+                    command.Parameters.AddWithValue("@medium", inputMedium);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("New medium added to mediums");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add new medium");
+                    }
+                }
+                connection.Close();
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Submit_Click(object sender, EventArgs e)
         {
             string inputTitle = bookTitle.Text.Trim();
             string inputAuthor = bookAuthor.Text.Trim();
@@ -111,37 +287,26 @@ namespace BookTrackerInterface
             string who = "Seth"; //Seth = 1, Em = 2 for SQL
             string inputMedium = bookMedium.Text.Trim();
 
+            //Check to see if new medium and if so, add to database
+            if (!bookMedium.Items.Contains(inputMedium))
+            {
+                bookMedium_AddNew(inputMedium);
+            }
+
+            //Check to see if new genre and if so, add to database
+            foreach (string genre in inputGenre)
+            {
+                if (!listBookGenre.Items.Contains(genre))
+                {
+                    bookGenre_AddNew(genre);
+                }
+            }
+
+
             MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString;
 
             myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
-            //conn = new MySql.Data.MySqlClient.MySqlConnection();
-            //conn.ConnectionString = myConnectionString;
-            //conn.Open();
-            /*
-            string sql = "SELECT * FROM books";
-            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
-            {
-                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(sql, connection))
-                {
-                    command.CommandTimeout = 0;
-                    connection.Open();
-                    using (MySql.Data.MySqlClient.MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string name = reader.GetString(1);
-                                string author = reader.GetString(2);
-                                //string path = Path.Combine(dir, fname);
-                                bookTitle.Text = name;
-                                MessageBox.Show(name);
-                            }
-                        }
-                    }
-                }
-            } */
 
             using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
             {
@@ -234,6 +399,9 @@ namespace BookTrackerInterface
                         MessageBox.Show("Insert into book_medium_associations table failed.");
                     }
                 }
+
+                connection.Close();
+
             }
 
             //Clear out form for a second book
