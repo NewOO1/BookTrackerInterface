@@ -196,7 +196,7 @@
             // 
             listBookGenre.FormattingEnabled = true;
             listBookGenre.ItemHeight = 15;
-            listBookGenre.Items.AddRange(new object[] { "Fantasy", "Sci-Fi", "Humor" });
+            listBookGenre.Items.AddRange(new object[] { "Fantasy", "Sci-Fi", "Humor", "Cyberpunk" });
             listBookGenre.Location = new Point(380, 358);
             listBookGenre.Name = "listBookGenre";
             listBookGenre.Size = new Size(120, 94);
