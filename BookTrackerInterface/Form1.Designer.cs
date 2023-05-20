@@ -93,13 +93,13 @@
             // 
             // bookSeries
             // 
-            bookSeries.FormattingEnabled = true;
-            bookSeries.Location = new Point(127, 97);
-            bookSeries.Name = "bookSeries";
-            bookSeries.Size = new Size(226, 23);
-            bookSeries.TabIndex = 5;
             bookSeries.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             bookSeries.AutoCompleteSource = AutoCompleteSource.ListItems;
+            bookSeries.FormattingEnabled = true;
+            bookSeries.Location = new Point(176, 97);
+            bookSeries.Name = "bookSeries";
+            bookSeries.Size = new Size(177, 23);
+            bookSeries.TabIndex = 5;
             // 
             // labelBookNum
             // 
@@ -113,21 +113,21 @@
             // 
             // bookNum
             // 
-            bookNum.Location = new Point(321, 163);
+            bookNum.Location = new Point(328, 163);
             bookNum.Name = "bookNum";
-            bookNum.Size = new Size(32, 23);
+            bookNum.Size = new Size(25, 23);
             bookNum.TabIndex = 7;
             bookNum.TextAlign = HorizontalAlignment.Right;
             // 
             // bookAuthor
             // 
-            bookAuthor.FormattingEnabled = true;
-            bookAuthor.Location = new Point(127, 231);
-            bookAuthor.Name = "bookAuthor";
-            bookAuthor.Size = new Size(226, 23);
-            bookAuthor.TabIndex = 9;
             bookAuthor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             bookAuthor.AutoCompleteSource = AutoCompleteSource.ListItems;
+            bookAuthor.FormattingEnabled = true;
+            bookAuthor.Location = new Point(176, 231);
+            bookAuthor.Name = "bookAuthor";
+            bookAuthor.Size = new Size(177, 23);
+            bookAuthor.TabIndex = 9;
             // 
             // labelAuthor
             // 
@@ -138,7 +138,6 @@
             labelAuthor.Size = new Size(54, 20);
             labelAuthor.TabIndex = 8;
             labelAuthor.Text = "Author";
-
             // 
             // bookDate
             // 
@@ -160,15 +159,13 @@
             // 
             // bookMedium
             // 
+            bookMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            bookMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
             bookMedium.FormattingEnabled = true;
-            //bookMedium.Items.AddRange(new object[] { "Physical", "Audiobook", "Kindle", "Manga", "Comic" });
             bookMedium.Location = new Point(233, 420);
             bookMedium.Name = "bookMedium";
             bookMedium.Size = new Size(119, 23);
             bookMedium.TabIndex = 13;
-            bookMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            bookMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //bookMedium.A
             // 
             // labelMedium
             // 

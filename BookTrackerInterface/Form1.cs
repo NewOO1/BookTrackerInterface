@@ -23,11 +23,11 @@ namespace BookTrackerInterface
             listBookGenre.SelectionMode = SelectionMode.MultiExtended; //allow for multi seletion with ctrl or shift
 
             //Medium Box Setup from database
-            FillMediumListBox(); 
+            FillMediumListBox();
             //Series Box Setup from database
-            FillSeriesListBox(); 
+            FillSeriesListBox();
             //Author Box Setup from database
-            FillAuthorListBox(); 
+            FillAuthorListBox();
 
             bookDate.Validating += bookDate_Validating;
             bookNum.Validating += bookNum_Validating;
@@ -210,7 +210,7 @@ namespace BookTrackerInterface
             //MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString;
 
-            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker"; 
+            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
 
             string insertGenreSql = "INSERT INTO genres (name) " +
                                         "VALUES (@genre)";
@@ -274,7 +274,9 @@ namespace BookTrackerInterface
             }
         }
 
-
+        //####################################################################################
+        //Adds book to database
+        //####################################################################################
         private void Submit_Click(object sender, EventArgs e)
         {
             string inputTitle = bookTitle.Text.Trim();
@@ -285,133 +287,143 @@ namespace BookTrackerInterface
             string[] inputGenre = inputGenrestring.Split(',');
             string inputDate = bookDate.Text.Trim();
             string who = "Seth"; //Seth = 1, Em = 2 for SQL
+            if (who == "Seth") { who = "1"; }
             string inputMedium = bookMedium.Text.Trim();
 
-            //Check to see if new medium and if so, add to database
-            if (!bookMedium.Items.Contains(inputMedium))
+            if (inputTitle == "" || inputAuthor == "" || inputGenrestring == "" || inputMedium == "")
             {
-                bookMedium_AddNew(inputMedium);
+                //Cannot Submit because data is missing
+                MessageBox.Show("Please Fill Out Required Fields");
             }
-
-            //Check to see if new genre and if so, add to database
-            foreach (string genre in inputGenre)
+            else
             {
-                if (!listBookGenre.Items.Contains(genre))
+
+                //Check to see if new medium and if so, add to database
+                if (!bookMedium.Items.Contains(inputMedium))
                 {
-                    bookGenre_AddNew(genre);
-                }
-            }
-
-
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            string myConnectionString;
-
-            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
-
-            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
-            {
-                connection.Open();
-
-                // Insert into books table
-                string insertBooksSql = "INSERT INTO books (name, author, series_name, book_number_in_series, who) " +
-                                        "VALUES (@name, @author, @seriesName, @bookNumber, @who)";
-
-                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBooksSql, connection))
-                {
-                    command.Parameters.AddWithValue("@name", inputTitle);
-                    command.Parameters.AddWithValue("@author", inputAuthor);
-                    command.Parameters.AddWithValue("@seriesName", inputSeries);
-                    command.Parameters.AddWithValue("@bookNumber", inputNum);
-                    command.Parameters.AddWithValue("@who", 1);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Insert into books table successful.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Insert into books table failed.");
-                    }
+                    bookMedium_AddNew(inputMedium);
                 }
 
-                // Insert into book_genre_associtations table taking into account that there could be more than 1 as well
+                //Check to see if new genre and if so, add to database
                 foreach (string genre in inputGenre)
                 {
-                    string insertGenreAssociationsSql = "INSERT INTO book_genre_associations (book_id, genre_id) " +
-                                                        "VALUES (LAST_INSERT_ID(), (SELECT id FROM genres WHERE name = @genreName))";
-
-                    using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertGenreAssociationsSql, connection))
+                    if (!listBookGenre.Items.Contains(genre))
                     {
-                        command.Parameters.AddWithValue("@genreName", genre);
+                        bookGenre_AddNew(genre);
+                    }
+                }
+
+
+                MySql.Data.MySqlClient.MySqlConnection conn;
+                string myConnectionString;
+
+                myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+
+                using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
+                {
+                    connection.Open();
+
+                    // Insert into books table
+                    string insertBooksSql = "INSERT INTO books (name, author, series_name, book_number_in_series, who) " +
+                                            "VALUES (@name, @author, @seriesName, @bookNumber, @who)";
+
+                    using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBooksSql, connection))
+                    {
+                        command.Parameters.AddWithValue("@name", inputTitle);
+                        command.Parameters.AddWithValue("@author", inputAuthor);
+                        command.Parameters.AddWithValue("@seriesName", inputSeries);
+                        command.Parameters.AddWithValue("@bookNumber", inputNum);
+                        command.Parameters.AddWithValue("@who", 1);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Insert into book_genre_associations table successful.");
+                            MessageBox.Show("Insert into books table successful.");
                         }
                         else
                         {
-                            MessageBox.Show("Insert into book_genre_associations table failed.");
+                            MessageBox.Show("Insert into books table failed.");
                         }
                     }
+
+                    // Insert into book_genre_associtations table taking into account that there could be more than 1 as well
+                    foreach (string genre in inputGenre)
+                    {
+                        string insertGenreAssociationsSql = "INSERT INTO book_genre_associations (book_id, genre_id) " +
+                                                            "VALUES (LAST_INSERT_ID(), (SELECT id FROM genres WHERE name = @genreName))";
+
+                        using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertGenreAssociationsSql, connection))
+                        {
+                            command.Parameters.AddWithValue("@genreName", genre);
+
+                            int rowsAffected = command.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Insert into book_genre_associations table successful.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Insert into book_genre_associations table failed.");
+                            }
+                        }
+                    }
+
+
+                    // Insert into book_history table
+                    string insertBookHistorySql = "INSERT INTO book_history (book_id, finished_date) " +
+                                                  "VALUES (LAST_INSERT_ID(), @finishedDate)";
+
+                    using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBookHistorySql, connection))
+                    {
+                        command.Parameters.AddWithValue("@finishedDate", inputDate);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Insert into book_history table successful.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insert into book_history table failed.");
+                        }
+                    }
+
+                    // Insert into book_medium_associations table
+                    string insertMediumAssociationsSql = "INSERT INTO book_medium_associations (history_id, medium_id) " +
+                                                         "VALUES (LAST_INSERT_ID(), (SELECT id FROM mediums WHERE medium_name = @mediumName))";
+
+                    using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertMediumAssociationsSql, connection))
+                    {
+                        command.Parameters.AddWithValue("@mediumName", inputMedium);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Insert into book_medium_associations table successful.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insert into book_medium_associations table failed.");
+                        }
+                    }
+
+                    connection.Close();
+
                 }
 
-
-                // Insert into book_history table
-                string insertBookHistorySql = "INSERT INTO book_history (book_id, finished_date) " +
-                                              "VALUES (LAST_INSERT_ID(), @finishedDate)";
-
-                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBookHistorySql, connection))
-                {
-                    command.Parameters.AddWithValue("@finishedDate", inputDate);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Insert into book_history table successful.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Insert into book_history table failed.");
-                    }
-                }
-
-                // Insert into book_medium_associations table
-                string insertMediumAssociationsSql = "INSERT INTO book_medium_associations (history_id, medium_id) " +
-                                                     "VALUES (LAST_INSERT_ID(), (SELECT id FROM mediums WHERE medium_name = @mediumName))";
-
-                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertMediumAssociationsSql, connection))
-                {
-                    command.Parameters.AddWithValue("@mediumName", inputMedium);
-
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Insert into book_medium_associations table successful.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Insert into book_medium_associations table failed.");
-                    }
-                }
-
-                connection.Close();
-
+                //Clear out form for a second book
+                bookTitle.Text = string.Empty;
+                bookSeries.Text = string.Empty;
+                bookAuthor.Text = string.Empty;
+                bookNum.Text = string.Empty;
+                bookGenre.Text = string.Empty;
+                bookMedium.Text = string.Empty;
+                bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
-
-            //Clear out form for a second book
-            bookTitle.Text = string.Empty;
-            bookSeries.Text = string.Empty;
-            bookAuthor.Text = string.Empty;
-            bookNum.Text = string.Empty;
-            bookGenre.Text = string.Empty;
-            bookMedium.Text = string.Empty;
-            bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
         }
 
