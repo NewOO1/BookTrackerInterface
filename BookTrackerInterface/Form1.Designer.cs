@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            button1 = new Button();
+            bSubmit = new Button();
             bookTitle = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             labelTitle = new Label();
@@ -43,19 +43,20 @@
             labelDate = new Label();
             bookMedium = new ComboBox();
             labelMedium = new Label();
-            bookGenre = new CheckedListBox();
             labelGenre = new Label();
+            bookGenre = new TextBox();
+            listBookGenre = new ListBox();
             SuspendLayout();
             // 
-            // button1
+            // bSubmit
             // 
-            button1.Location = new Point(277, 498);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            bSubmit.Location = new Point(277, 498);
+            bSubmit.Name = "bSubmit";
+            bSubmit.Size = new Size(75, 23);
+            bSubmit.TabIndex = 0;
+            bSubmit.Text = "Submit";
+            bSubmit.UseVisualStyleBackColor = true;
+            bSubmit.Click += button1_Click;
             // 
             // bookTitle
             // 
@@ -171,15 +172,6 @@
             labelMedium.TabIndex = 12;
             labelMedium.Text = "Medium";
             // 
-            // bookGenre
-            // 
-            bookGenre.FormattingEnabled = true;
-            bookGenre.Items.AddRange(new object[] { "Fantasy", "Sci-Fi", "Humor" });
-            bookGenre.Location = new Point(233, 358);
-            bookGenre.Name = "bookGenre";
-            bookGenre.Size = new Size(120, 22);
-            bookGenre.TabIndex = 14;
-            // 
             // labelGenre
             // 
             labelGenre.AutoSize = true;
@@ -190,13 +182,32 @@
             labelGenre.TabIndex = 15;
             labelGenre.Text = "Genre";
             // 
+            // bookGenre
+            // 
+            bookGenre.Location = new Point(176, 358);
+            bookGenre.Name = "bookGenre";
+            bookGenre.Size = new Size(177, 23);
+            bookGenre.TabIndex = 17;
+            // 
+            // listBookGenre
+            // 
+            listBookGenre.FormattingEnabled = true;
+            listBookGenre.ItemHeight = 15;
+            listBookGenre.Items.AddRange(new object[] { "Fantasy", "Sci-Fi", "Humor" });
+            listBookGenre.Location = new Point(380, 358);
+            listBookGenre.Name = "listBookGenre";
+            listBookGenre.Size = new Size(120, 94);
+            listBookGenre.TabIndex = 18;
+            listBookGenre.Visible = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 569);
-            Controls.Add(labelGenre);
+            Controls.Add(listBookGenre);
             Controls.Add(bookGenre);
+            Controls.Add(labelGenre);
             Controls.Add(bookMedium);
             Controls.Add(labelMedium);
             Controls.Add(bookDate);
@@ -209,7 +220,7 @@
             Controls.Add(labelSeries);
             Controls.Add(labelTitle);
             Controls.Add(bookTitle);
-            Controls.Add(button1);
+            Controls.Add(bSubmit);
             Name = "Form1";
             Text = "New Book";
             Load += Form1_Load;
@@ -219,7 +230,7 @@
 
         #endregion
 
-        private Button button1;
+        private Button bSubmit;
         private TextBox bookTitle;
         private ContextMenuStrip contextMenuStrip1;
         private Label labelTitle;
@@ -233,7 +244,8 @@
         private Label labelDate;
         private ComboBox bookMedium;
         private Label labelMedium;
-        private CheckedListBox bookGenre;
         private Label labelGenre;
+        private TextBox bookGenre;
+        private ListBox listBookGenre;
     }
 }

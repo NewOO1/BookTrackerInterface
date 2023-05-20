@@ -5,6 +5,7 @@ using System;
 using MySql.Data.MySqlClient;
 using System.ComponentModel;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace BookTrackerInterface
 {
@@ -14,7 +15,31 @@ namespace BookTrackerInterface
         {
             InitializeComponent();
 
-            MultiSelectComboBox multiSelectComboBox = new MultiSelectComboBox();
+            bookGenre.Click += bookGenre_Click;
+            listBookGenre.SelectedIndexChanged += listBookGenre_SelectedIndexChanged;
+
+            listBookGenre.LostFocus += listBookGenre_LostFocus;
+
+            listBookGenre.SelectionMode = SelectionMode.MultiExtended;
+        }
+
+        private bool listBoxVisible = false;
+
+        private void bookGenre_Click(object sender, EventArgs e)
+        {
+            listBoxVisible = !listBoxVisible;
+            listBookGenre.Visible = listBoxVisible;
+        }
+
+        private void listBookGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bookGenre.Text = string.Join(", ", listBookGenre.SelectedItems.Cast<string>());
+        }
+
+        private void listBookGenre_LostFocus(object sender, EventArgs e)
+        {
+            listBoxVisible = false;
+            listBookGenre.Visible = listBoxVisible;
         }
 
         private void Form1_Load(object sender, EventArgs e)
