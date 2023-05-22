@@ -6,21 +6,24 @@ using MySql.Data.MySqlClient;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Diagnostics;
+using MySqlX.XDevAPI.Relational;
 
 namespace BookTrackerInterface
 {
-    public partial class Form1 : Form
+    public partial class AddNewComplBookForm : Form
     {
-        public Form1()
+        public AddNewComplBookForm()
         {
             InitializeComponent();
-
 
             //Genre Box Setup
             FillGenreListBox(); //Fills out from database
             bookGenre.Click += bookGenre_Click; //on click make list visable
             listBookGenre.SelectedIndexChanged += listBookGenre_SelectedIndexChanged; //as items are selected in the listbox add them to the textbox
             listBookGenre.SelectionMode = SelectionMode.MultiExtended; //allow for multi seletion with ctrl or shift
+            
+            listBookGenre.LostFocus += listBookGenre_LostFocus;
 
             //Medium Box Setup from database
             FillMediumListBox();
@@ -34,14 +37,31 @@ namespace BookTrackerInterface
         }
 
         //####################################################################################
+        //Conneciton String swap until Prod vs Test projects is implemented
+        //####################################################################################
+        private bool listBoxVisible = false;
+        //For Production
+        //private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
+        //For Testing
+        private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTrackerTest";
+
+        //####################################################################################
+        //Auto sets date box to current date when form is loaded
+        //####################################################################################
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+        }
+
+        //####################################################################################
         //Queries the Genres table in database and fills out the listBookGenre box
         //####################################################################################
         private void FillGenreListBox()
         {
-            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
             string query = "SELECT name FROM genres ORDER BY name ASC";
 
-            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
                 {
@@ -66,10 +86,9 @@ namespace BookTrackerInterface
         //####################################################################################
         private void FillMediumListBox()
         {
-            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
             string query = "SELECT medium_name FROM mediums ORDER BY medium_name ASC";
 
-            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
                 {
@@ -94,10 +113,9 @@ namespace BookTrackerInterface
         //####################################################################################
         private void FillSeriesListBox()
         {
-            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
             string query = "SELECT DISTINCT series_name FROM books WHERE series_name <> '' ORDER BY series_name ASC";
 
-            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
                 {
@@ -121,10 +139,9 @@ namespace BookTrackerInterface
         //####################################################################################
         private void FillAuthorListBox()
         {
-            string connString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
             string query = "SELECT DISTINCT author FROM books WHERE author <> '' ORDER BY author ASC";
 
-            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
                 {
@@ -164,7 +181,8 @@ namespace BookTrackerInterface
         //  - Concatinates multiclick choices into single string with ',' separator
         //  - rehides listbox when focus is lost
         //####################################################################################
-        private bool listBoxVisible = false;
+
+
         private void bookGenre_Click(object sender, EventArgs e)
         {
             listBoxVisible = !listBoxVisible;
@@ -180,13 +198,7 @@ namespace BookTrackerInterface
             listBookGenre.Visible = listBoxVisible;
         }
 
-        //####################################################################################
-        //Auto sets date box to current date when form is loaded
-        //####################################################################################
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-        }
+
 
         //####################################################################################
         //Validates that there is a Date in YYYY-MM-DD format in the Date textbox
@@ -207,15 +219,11 @@ namespace BookTrackerInterface
         //####################################################################################
         private void bookGenre_AddNew(string inputGenre)
         {
-            //MySql.Data.MySqlClient.MySqlConnection conn;
-            string myConnectionString;
-
-            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
 
             string insertGenreSql = "INSERT INTO genres (name) " +
                                         "VALUES (@genre)";
 
-            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
+            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 connection.Open();
 
@@ -243,15 +251,11 @@ namespace BookTrackerInterface
         //####################################################################################
         private void bookMedium_AddNew(string inputMedium)
         {
-            //MySql.Data.MySqlClient.MySqlConnection conn;
-            string myConnectionString;
-
-            myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
 
             string insertGenreSql = "INSERT INTO mediums (medium_name) " +
                                         "VALUES (@medium)";
 
-            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
+            using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 connection.Open();
 
@@ -283,6 +287,8 @@ namespace BookTrackerInterface
             string inputAuthor = bookAuthor.Text.Trim();
             string inputSeries = bookSeries.Text.Trim();
             string inputNum = bookNum.Text.Trim();
+            string inputCoverURL = bookCover.Text.Trim();
+            DateTime now = DateTime.Now;
             string inputGenrestring = bookGenre.Text.Trim(); //can be deliniated by ,
             string[] inputGenre = inputGenrestring.Split(',');
             string inputDate = bookDate.Text.Trim();
@@ -290,14 +296,13 @@ namespace BookTrackerInterface
             if (who == "Seth") { who = "1"; }
             string inputMedium = bookMedium.Text.Trim();
 
-            if (inputTitle == "" || inputAuthor == "" || inputGenrestring == "" || inputMedium == "")
+            if (inputTitle == "" || inputAuthor == "" || inputGenrestring == "" || inputMedium == "" || inputCoverURL == "")
             {
                 //Cannot Submit because data is missing
                 MessageBox.Show("Please Fill Out Required Fields");
             }
             else
             {
-
                 //Check to see if new medium and if so, add to database
                 if (!bookMedium.Items.Contains(inputMedium))
                 {
@@ -313,19 +318,19 @@ namespace BookTrackerInterface
                     }
                 }
 
+                //Copy over Cover File, Rename and store URL for databse
+                string newCoverFileLocation = @"C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\";
+                string newCoverFileName = string.Format("{0:yyyyMMddHHmmss}-{1}.jpg", now, Guid.NewGuid());
+                string outputCoverURL = newCoverFileLocation + newCoverFileName;
+                System.IO.File.Copy(inputCoverURL, outputCoverURL, true);
 
-                MySql.Data.MySqlClient.MySqlConnection conn;
-                string myConnectionString;
-
-                myConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
-
-                using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(myConnectionString))
+                using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
                 {
                     connection.Open();
 
                     // Insert into books table
-                    string insertBooksSql = "INSERT INTO books (name, author, series_name, book_number_in_series, who) " +
-                                            "VALUES (@name, @author, @seriesName, @bookNumber, @who)";
+                    string insertBooksSql = "INSERT INTO books (name, author, series_name, book_number_in_series, image_url, who) " +
+                                            "VALUES (@name, @author, @seriesName, @bookNumber, @cover, @who)";
 
                     using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBooksSql, connection))
                     {
@@ -333,6 +338,7 @@ namespace BookTrackerInterface
                         command.Parameters.AddWithValue("@author", inputAuthor);
                         command.Parameters.AddWithValue("@seriesName", inputSeries);
                         command.Parameters.AddWithValue("@bookNumber", inputNum);
+                        command.Parameters.AddWithValue("@cover", newCoverFileName);
                         command.Parameters.AddWithValue("@who", 1);
 
                         int rowsAffected = command.ExecuteNonQuery();
@@ -422,11 +428,49 @@ namespace BookTrackerInterface
                 bookNum.Text = string.Empty;
                 bookGenre.Text = string.Empty;
                 bookMedium.Text = string.Empty;
+                bookCover.Text = string.Empty;
                 bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                listBookGenre.Visible = false;
             }
 
         }
 
+        private void bCoverFile_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
+            // Set the initial directory, the type of files to look for, etc.
+            openFileDialog.InitialDirectory = "c:\\Users\\edens\\Downloads";
+            openFileDialog.Filter = "Image files (*.jpg, *.png)|*.jpg;*.png";
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = true;
+
+            // Show the OpenFileDialog and get the result
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // If the user selected a file, get the file's full path
+                string filePath = openFileDialog.FileName;
+
+                // You can now use the file for whatever you need
+                bookCover.Text = filePath;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string inputTitle = bookTitle.Text.Trim();
+            inputTitle = inputTitle.Replace(" ", "");
+            // Get the current date/time
+            DateTime now = DateTime.Now;
+            string inputAuthor = bookAuthor.Text.Trim();
+            inputAuthor = inputAuthor.Replace(" ", "");
+            string inputCoverURL = bookCover.Text.Trim();
+            string newCoverFileLocation = @"C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\";
+            string newCoverFileName = string.Format("{0:yyyyMMddHHmmss}-{1}.jpg", now, Guid.NewGuid());
+            string outputCoverURL = newCoverFileLocation + newCoverFileName;
+
+            System.IO.File.Copy(inputCoverURL, outputCoverURL, true);
+        }
     }
 }

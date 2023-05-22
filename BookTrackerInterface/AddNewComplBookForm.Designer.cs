@@ -1,6 +1,6 @@
 ﻿namespace BookTrackerInterface
 {
-    partial class Form1
+    partial class AddNewComplBookForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -46,6 +46,10 @@
             labelGenre = new Label();
             bookGenre = new TextBox();
             listBookGenre = new ListBox();
+            labelCover = new Label();
+            bCoverFile = new Button();
+            bookCover = new TextBox();
+            button1 = new Button();
             SuspendLayout();
             // 
             // bSubmit
@@ -85,7 +89,7 @@
             // 
             labelSeries.AutoSize = true;
             labelSeries.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSeries.Location = new Point(56, 100);
+            labelSeries.Location = new Point(56, 90);
             labelSeries.Name = "labelSeries";
             labelSeries.Size = new Size(48, 20);
             labelSeries.TabIndex = 4;
@@ -96,7 +100,7 @@
             bookSeries.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             bookSeries.AutoCompleteSource = AutoCompleteSource.ListItems;
             bookSeries.FormattingEnabled = true;
-            bookSeries.Location = new Point(176, 97);
+            bookSeries.Location = new Point(176, 87);
             bookSeries.Name = "bookSeries";
             bookSeries.Size = new Size(177, 23);
             bookSeries.TabIndex = 5;
@@ -105,7 +109,7 @@
             // 
             labelBookNum.AutoSize = true;
             labelBookNum.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelBookNum.Location = new Point(56, 162);
+            labelBookNum.Location = new Point(56, 134);
             labelBookNum.Name = "labelBookNum";
             labelBookNum.Size = new Size(101, 20);
             labelBookNum.TabIndex = 6;
@@ -113,7 +117,7 @@
             // 
             // bookNum
             // 
-            bookNum.Location = new Point(328, 163);
+            bookNum.Location = new Point(328, 135);
             bookNum.Name = "bookNum";
             bookNum.Size = new Size(25, 23);
             bookNum.TabIndex = 7;
@@ -124,7 +128,7 @@
             bookAuthor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             bookAuthor.AutoCompleteSource = AutoCompleteSource.ListItems;
             bookAuthor.FormattingEnabled = true;
-            bookAuthor.Location = new Point(176, 231);
+            bookAuthor.Location = new Point(176, 181);
             bookAuthor.Name = "bookAuthor";
             bookAuthor.Size = new Size(177, 23);
             bookAuthor.TabIndex = 9;
@@ -133,7 +137,7 @@
             // 
             labelAuthor.AutoSize = true;
             labelAuthor.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelAuthor.Location = new Point(56, 234);
+            labelAuthor.Location = new Point(56, 184);
             labelAuthor.Name = "labelAuthor";
             labelAuthor.Size = new Size(54, 20);
             labelAuthor.TabIndex = 8;
@@ -205,11 +209,53 @@
             listBookGenre.TabIndex = 18;
             listBookGenre.Visible = false;
             // 
-            // Form1
+            // labelCover
+            // 
+            labelCover.AutoSize = true;
+            labelCover.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCover.Location = new Point(56, 237);
+            labelCover.Name = "labelCover";
+            labelCover.Size = new Size(47, 20);
+            labelCover.TabIndex = 19;
+            labelCover.Text = "Cover";
+            // 
+            // bCoverFile
+            // 
+            bCoverFile.Location = new Point(380, 237);
+            bCoverFile.Name = "bCoverFile";
+            bCoverFile.Size = new Size(75, 23);
+            bCoverFile.TabIndex = 21;
+            bCoverFile.Text = "Choose";
+            bCoverFile.UseVisualStyleBackColor = true;
+            bCoverFile.Click += bCoverFile_Click;
+            // 
+            // bookCover
+            // 
+            bookCover.Location = new Point(127, 238);
+            bookCover.Name = "bookCover";
+            bookCover.Size = new Size(226, 23);
+            bookCover.TabIndex = 22;
+            bookCover.TextAlign = HorizontalAlignment.Right;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(380, 135);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 23;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // AddNewComplBookForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 569);
+            Controls.Add(button1);
+            Controls.Add(bookCover);
+            Controls.Add(bCoverFile);
+            Controls.Add(labelCover);
             Controls.Add(listBookGenre);
             Controls.Add(bookGenre);
             Controls.Add(labelGenre);
@@ -226,7 +272,7 @@
             Controls.Add(labelTitle);
             Controls.Add(bookTitle);
             Controls.Add(bSubmit);
-            Name = "Form1";
+            Name = "AddNewComplBookForm";
             Text = "New Book";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -252,5 +298,9 @@
         private Label labelGenre;
         private TextBox bookGenre;
         private ListBox listBookGenre;
+        private Label labelCover;
+        private Button bCoverFile;
+        private TextBox bookCover;
+        private Button button1;
     }
 }
