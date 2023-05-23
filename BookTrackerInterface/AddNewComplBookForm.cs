@@ -293,7 +293,9 @@ namespace BookTrackerInterface
             string inputTitle = bookTitle.Text.Trim();
             string inputAuthor = bookAuthor.Text.Trim();
             string inputSeries = bookSeries.Text.Trim();
+            if (inputSeries == "") { inputSeries = null; }
             string inputNum = bookNum.Text.Trim();
+            if(inputNum == "") {inputNum = null;}
             string inputCoverURL = bookCover.Text.Trim();
             DateTime now = DateTime.Now;
             string inputGenrestring = bookGenre.Text.Trim(); //can be deliniated by ,
@@ -329,6 +331,7 @@ namespace BookTrackerInterface
                 string newCoverFileName = string.Format("{0:yyyyMMddHHmmss}-{1}.jpg", now, Guid.NewGuid());
                 string outputCoverURL = cNewCoverFileLocation + newCoverFileName;
                 System.IO.File.Copy(inputCoverURL, outputCoverURL, true);
+                System.IO.File.SetLastWriteTime(outputCoverURL, DateTime.Now);
 
                 using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
                 {

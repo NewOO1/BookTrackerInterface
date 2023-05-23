@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookTrackerInterface\FunctionalityForms.csproj" />
-    <ProjectReference Include="..\ConnectionClass\BaseWindow.csproj" />
+    <ProjectReference Include="..\ConnectionClass\MainMenu.csproj" />
   </ItemGroup>
 
 </Project>

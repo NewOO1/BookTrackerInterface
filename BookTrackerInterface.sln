@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalityForms", "BookT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookTracker_Prod", "BookTracker_Prod\BookTracker_Prod.csproj", "{99D74076-5B40-4A3B-AA68-E1B87945A5F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseWindow", "ConnectionClass\BaseWindow.csproj", "{BF296308-A30B-4EB3-81E9-6FE53DCFE2AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainMenu", "ConnectionClass\MainMenu.csproj", "{BF296308-A30B-4EB3-81E9-6FE53DCFE2AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookTracker_Test", "BookTracker_Test\BookTracker_Test.csproj", "{B5F6B9C8-D69E-45D4-AF72-511D65FFEE67}"
 EndProject
