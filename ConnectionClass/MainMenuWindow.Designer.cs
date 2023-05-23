@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             bAddNewBook = new Button();
+            bUpdateCover = new Button();
             SuspendLayout();
             // 
             // bAddNewBook
@@ -41,13 +42,24 @@
             bAddNewBook.UseVisualStyleBackColor = true;
             bAddNewBook.Click += bAddNewBook_Click;
             // 
-            // BaseComponent
+            // bUpdateCover
+            // 
+            bUpdateCover.Location = new Point(39, 134);
+            bUpdateCover.Name = "bUpdateCover";
+            bUpdateCover.Size = new Size(118, 23);
+            bUpdateCover.TabIndex = 1;
+            bUpdateCover.Text = "Update Covers";
+            bUpdateCover.UseVisualStyleBackColor = true;
+            bUpdateCover.Click += bUpdateCover_Click;
+            // 
+            // MainMenuWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(bUpdateCover);
             Controls.Add(bAddNewBook);
-            Name = "BaseComponent";
+            Name = "MainMenuWindow";
             Text = "Form1";
             ResumeLayout(false);
         }
@@ -55,5 +67,6 @@
         #endregion
 
         private Button bAddNewBook;
+        private Button bUpdateCover;
     }
 }

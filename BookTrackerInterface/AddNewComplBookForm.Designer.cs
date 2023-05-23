@@ -1,4 +1,4 @@
-﻿namespace BookTrackerInterface
+﻿namespace FunctionalityForms
 {
     partial class AddNewComplBookForm
     {

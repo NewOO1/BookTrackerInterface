@@ -1,4 +1,5 @@
 using BookTrackerInterface;
+using FunctionalityForms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ConnectionClass
@@ -35,6 +36,12 @@ namespace ConnectionClass
         {
             AddNewComplBookForm cAddNewComplBookForm = new AddNewComplBookForm(cConnectionString, cCoverLocation);
             cAddNewComplBookForm.Show();
+        }
+
+        private void bUpdateCover_Click(object sender, EventArgs e)
+        {
+            UpdateCoversForm cUpdateCoversForm = new UpdateCoversForm(cConnectionString, cCoverLocation);
+            cUpdateCoversForm.Show();
         }
     }
 }

@@ -11,7 +11,7 @@ using MySqlX.XDevAPI.Relational;
 using WeifenLuo.WinFormsUI.Docking;
 using BookTrackerInterface;
 
-namespace BookTrackerInterface
+namespace FunctionalityForms
 {
     public partial class AddNewComplBookForm : Form
     {
@@ -45,14 +45,7 @@ namespace BookTrackerInterface
             bookNum.Validating += bookNum_Validating;
         }
 
-        //####################################################################################
-        //Conneciton String swap until Prod vs Test projects is implemented
-        //####################################################################################
         private bool listBoxVisible = false;
-        //For Production
-        //private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
-        //For Testing
-        //private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTrackerTest";
 
         //####################################################################################
         //Auto sets date box to current date when form is loaded
@@ -434,12 +427,21 @@ namespace BookTrackerInterface
                 bookTitle.Text = string.Empty;
                 bookSeries.Text = string.Empty;
                 bookAuthor.Text = string.Empty;
+                bookAuthor.Items.Clear();
                 bookNum.Text = string.Empty;
                 bookGenre.Text = string.Empty;
                 bookMedium.Text = string.Empty;
+                bookMedium.Items.Clear();
                 bookCover.Text = string.Empty;
                 bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 listBookGenre.Visible = false;
+                listBookGenre.Items.Clear();
+                //Medium Box Setup from database
+                FillMediumListBox();
+                //Series Box Setup from database
+                FillSeriesListBox();
+                //Author Box Setup from database
+                FillAuthorListBox();
             }
 
         }
