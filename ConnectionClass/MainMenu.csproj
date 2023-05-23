@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookTrackerInterface\AddNewBook.csproj" />
+    <ProjectReference Include="..\BookTrackerInterface\FunctionalityForms.csproj" />
   </ItemGroup>
 
 </Project>

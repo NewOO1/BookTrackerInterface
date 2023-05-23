@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddNewBook", "BookTrackerInterface\AddNewBook.csproj", "{B6639E45-9CCD-459C-9229-B34CEB3B667D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalityForms", "BookTrackerInterface\FunctionalityForms.csproj", "{B6639E45-9CCD-459C-9229-B34CEB3B667D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookTracker_Prod", "BookTracker_Prod\BookTracker_Prod.csproj", "{99D74076-5B40-4A3B-AA68-E1B87945A5F8}"
 EndProject

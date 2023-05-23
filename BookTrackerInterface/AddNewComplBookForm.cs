@@ -190,8 +190,6 @@ namespace BookTrackerInterface
         //  - Concatinates multiclick choices into single string with ',' separator
         //  - rehides listbox when focus is lost
         //####################################################################################
-
-
         private void bookGenre_Click(object sender, EventArgs e)
         {
             listBoxVisible = !listBoxVisible;
@@ -328,7 +326,6 @@ namespace BookTrackerInterface
                 }
 
                 //Copy over Cover File, Rename and store URL for databse
-                //string newCoverFileLocation = @"C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\";
                 string newCoverFileName = string.Format("{0:yyyyMMddHHmmss}-{1}.jpg", now, Guid.NewGuid());
                 string outputCoverURL = cNewCoverFileLocation + newCoverFileName;
                 System.IO.File.Copy(inputCoverURL, outputCoverURL, true);

@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookTrackerInterface\AddNewBook.csproj" />
+    <ProjectReference Include="..\BookTrackerInterface\FunctionalityForms.csproj" />
     <ProjectReference Include="..\ConnectionClass\BaseWindow.csproj" />
   </ItemGroup>
 
