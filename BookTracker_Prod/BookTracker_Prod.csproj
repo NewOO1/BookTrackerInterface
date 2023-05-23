@@ -9,14 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySqlConnector" Version="2.2.6" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="DockPanelSuite" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector NET 8.0.33\MySql.Data.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\BookTrackerInterface\AddNewBook.csproj" />
+    <ProjectReference Include="..\ConnectionClass\BaseWindow.csproj" />
   </ItemGroup>
 
 </Project>

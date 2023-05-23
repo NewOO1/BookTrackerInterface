@@ -49,7 +49,6 @@
             labelCover = new Label();
             bCoverFile = new Button();
             bookCover = new TextBox();
-            button1 = new Button();
             SuspendLayout();
             // 
             // bSubmit
@@ -237,22 +236,11 @@
             bookCover.TabIndex = 22;
             bookCover.TextAlign = HorizontalAlignment.Right;
             // 
-            // button1
-            // 
-            button1.Location = new Point(380, 135);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 23;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // AddNewComplBookForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 569);
-            Controls.Add(button1);
             Controls.Add(bookCover);
             Controls.Add(bCoverFile);
             Controls.Add(labelCover);
@@ -301,6 +289,5 @@
         private Label labelCover;
         private Button bCoverFile;
         private TextBox bookCover;
-        private Button button1;
     }
 }

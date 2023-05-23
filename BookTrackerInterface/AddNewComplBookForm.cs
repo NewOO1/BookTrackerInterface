@@ -8,21 +8,30 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Diagnostics;
 using MySqlX.XDevAPI.Relational;
+using WeifenLuo.WinFormsUI.Docking;
+using BookTrackerInterface;
 
 namespace BookTrackerInterface
 {
     public partial class AddNewComplBookForm : Form
     {
-        public AddNewComplBookForm()
+        private string cConnectionString;
+        private string cNewCoverFileLocation;
+
+        public AddNewComplBookForm(string passedConnection, string passedCover)
         {
             InitializeComponent();
+
+            string cConnectionString = passedConnection;
+            string cNewCoverFileLocation = passedCover;
+            
 
             //Genre Box Setup
             FillGenreListBox(); //Fills out from database
             bookGenre.Click += bookGenre_Click; //on click make list visable
             listBookGenre.SelectedIndexChanged += listBookGenre_SelectedIndexChanged; //as items are selected in the listbox add them to the textbox
             listBookGenre.SelectionMode = SelectionMode.MultiExtended; //allow for multi seletion with ctrl or shift
-            
+
             listBookGenre.LostFocus += listBookGenre_LostFocus;
 
             //Medium Box Setup from database
@@ -43,7 +52,7 @@ namespace BookTrackerInterface
         //For Production
         //private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTracker";
         //For Testing
-        private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTrackerTest";
+        //private string cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTrackerTest";
 
         //####################################################################################
         //Auto sets date box to current date when form is loaded
@@ -319,9 +328,9 @@ namespace BookTrackerInterface
                 }
 
                 //Copy over Cover File, Rename and store URL for databse
-                string newCoverFileLocation = @"C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\";
+                //string newCoverFileLocation = @"C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\";
                 string newCoverFileName = string.Format("{0:yyyyMMddHHmmss}-{1}.jpg", now, Guid.NewGuid());
-                string outputCoverURL = newCoverFileLocation + newCoverFileName;
+                string outputCoverURL = cNewCoverFileLocation + newCoverFileName;
                 System.IO.File.Copy(inputCoverURL, outputCoverURL, true);
 
                 using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
@@ -457,20 +466,6 @@ namespace BookTrackerInterface
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string inputTitle = bookTitle.Text.Trim();
-            inputTitle = inputTitle.Replace(" ", "");
-            // Get the current date/time
-            DateTime now = DateTime.Now;
-            string inputAuthor = bookAuthor.Text.Trim();
-            inputAuthor = inputAuthor.Replace(" ", "");
-            string inputCoverURL = bookCover.Text.Trim();
-            string newCoverFileLocation = @"C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\";
-            string newCoverFileName = string.Format("{0:yyyyMMddHHmmss}-{1}.jpg", now, Guid.NewGuid());
-            string outputCoverURL = newCoverFileLocation + newCoverFileName;
-
-            System.IO.File.Copy(inputCoverURL, outputCoverURL, true);
-        }
+    
     }
 }
