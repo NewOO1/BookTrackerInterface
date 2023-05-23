@@ -11,7 +11,7 @@ namespace BookTracker_Test
             InitializeComponent();
             //For Production
             cConnectionString = "server=192.168.1.53;port=3307;uid=BookTracker;pwd=0$c0edC7vsui6cSg;database=BookTrackerTest";
-            cCoverLocation = "C:\\Users\\edens\\OneDrive\\Documents\\ProjectsHobbies\\BookTracker\\CoverImagesTest";
+            cCoverLocation = "C:\\Users\\edens\\OneDrive\\Documents\\ProjectsHobbies\\BookTracker\\CoverImagesTest\\";
 
             Initialize();
         }

@@ -22,8 +22,8 @@ namespace BookTrackerInterface
         {
             InitializeComponent();
 
-            string cConnectionString = passedConnection;
-            string cNewCoverFileLocation = passedCover;
+            this.cConnectionString = passedConnection;
+            this.cNewCoverFileLocation = passedCover;
             
 
             //Genre Box Setup
