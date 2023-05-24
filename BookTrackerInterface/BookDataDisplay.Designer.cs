@@ -39,36 +39,44 @@
             // 
             // tbTitle
             // 
-            tbTitle.Location = new Point(14, 154);
+            tbTitle.BackColor = SystemColors.Window;
+            tbTitle.Location = new Point(3, 142);
             tbTitle.Multiline = true;
             tbTitle.Name = "tbTitle";
+            tbTitle.ReadOnly = true;
             tbTitle.Size = new Size(179, 39);
             tbTitle.TabIndex = 0;
             // 
             // tbSeries
             // 
-            tbSeries.Location = new Point(14, 199);
+            tbSeries.BackColor = SystemColors.Window;
+            tbSeries.Location = new Point(3, 187);
             tbSeries.Name = "tbSeries";
+            tbSeries.ReadOnly = true;
             tbSeries.Size = new Size(126, 23);
             tbSeries.TabIndex = 1;
             // 
             // tbNum
             // 
-            tbNum.Location = new Point(167, 199);
+            tbNum.BackColor = SystemColors.Window;
+            tbNum.Location = new Point(156, 187);
             tbNum.Name = "tbNum";
+            tbNum.ReadOnly = true;
             tbNum.Size = new Size(26, 23);
             tbNum.TabIndex = 2;
             // 
             // tbAuthor
             // 
-            tbAuthor.Location = new Point(14, 228);
+            tbAuthor.BackColor = SystemColors.Window;
+            tbAuthor.Location = new Point(3, 216);
             tbAuthor.Name = "tbAuthor";
+            tbAuthor.ReadOnly = true;
             tbAuthor.Size = new Size(179, 23);
             tbAuthor.TabIndex = 3;
             // 
             // pbCover
             // 
-            pbCover.Location = new Point(14, 16);
+            pbCover.Location = new Point(3, 4);
             pbCover.Name = "pbCover";
             pbCover.Size = new Size(179, 132);
             pbCover.SizeMode = PictureBoxSizeMode.Zoom;
@@ -77,8 +85,10 @@
             // 
             // tbDate
             // 
-            tbDate.Location = new Point(14, 257);
+            tbDate.BackColor = SystemColors.Window;
+            tbDate.Location = new Point(3, 245);
             tbDate.Name = "tbDate";
+            tbDate.ReadOnly = true;
             tbDate.Size = new Size(126, 23);
             tbDate.TabIndex = 5;
             // 
@@ -86,6 +96,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Window;
             Controls.Add(tbDate);
             Controls.Add(pbCover);
             Controls.Add(tbAuthor);
@@ -93,7 +104,7 @@
             Controls.Add(tbSeries);
             Controls.Add(tbTitle);
             Name = "BookDataDisplay";
-            Size = new Size(213, 301);
+            Size = new Size(187, 271);
             ((System.ComponentModel.ISupportInitialize)pbCover).EndInit();
             ResumeLayout(false);
             PerformLayout();

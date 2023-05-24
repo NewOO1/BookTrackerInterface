@@ -24,8 +24,12 @@ namespace FunctionalityForms
             tbNum.Text = num;
             tbSeries.Text = series;
             tbTitle.Text = title;
-            coverfilePath = cNewCoverFileLocation + coverfilePath;
-            pbCover.Image = Image.FromFile(coverfilePath);
+            if (coverfilePath != "")
+            {
+                coverfilePath = cNewCoverFileLocation + coverfilePath;
+                pbCover.Image = Image.FromFile(coverfilePath);
+            }
+
             tbDate.Text = datedone;
 
 

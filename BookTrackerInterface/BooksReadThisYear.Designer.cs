@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             bTrigger = new Button();
+            tlp = new TableLayoutPanel();
             SuspendLayout();
             // 
             // bTrigger
@@ -41,19 +42,38 @@
             bTrigger.UseVisualStyleBackColor = true;
             bTrigger.Click += bTrigger_Click;
             // 
+            // tlp
+            // 
+            tlp.AutoSize = true;
+            tlp.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tlp.ColumnCount = 5;
+            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tlp.Location = new Point(24, 59);
+            tlp.Name = "tlp";
+            tlp.Size = new Size(0, 0);
+            tlp.TabIndex = 1;
+            // 
             // BooksReadThisYear
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            AutoScroll = true;
+            ClientSize = new Size(1272, 824);
+            Controls.Add(tlp);
             Controls.Add(bTrigger);
             Name = "BooksReadThisYear";
             Text = "BooksReadThisYear";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button bTrigger;
+        private TableLayoutPanel tlp;
     }
 }
