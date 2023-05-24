@@ -98,7 +98,7 @@
             pbCover.Location = new Point(96, 110);
             pbCover.Name = "pbCover";
             pbCover.Size = new Size(149, 226);
-            pbCover.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbCover.SizeMode = PictureBoxSizeMode.Zoom;
             pbCover.TabIndex = 6;
             pbCover.TabStop = false;
             // 

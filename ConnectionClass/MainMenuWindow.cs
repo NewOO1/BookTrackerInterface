@@ -49,5 +49,11 @@ namespace ConnectionClass
             AddNewCompletionForm cAddNewCompletionForm = new AddNewCompletionForm(cConnectionString);
             cAddNewCompletionForm.Show();
         }
+
+        private void bBooksReadThisYear_Click(object sender, EventArgs e)
+        {
+            BooksReadThisYear cBooksReadThisYear = new BooksReadThisYear(cConnectionString, cCoverLocation);
+            cBooksReadThisYear.Show();  
+        }
     }
 }

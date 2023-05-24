@@ -31,6 +31,7 @@
             bAddNewBook = new Button();
             bUpdateCover = new Button();
             bAddNewCompletion = new Button();
+            bBooksReadThisYear = new Button();
             SuspendLayout();
             // 
             // bAddNewBook
@@ -63,11 +64,22 @@
             bAddNewCompletion.UseVisualStyleBackColor = true;
             bAddNewCompletion.Click += bAddNewCompletion_Click;
             // 
+            // bBooksReadThisYear
+            // 
+            bBooksReadThisYear.Location = new Point(39, 249);
+            bBooksReadThisYear.Name = "bBooksReadThisYear";
+            bBooksReadThisYear.Size = new Size(133, 23);
+            bBooksReadThisYear.TabIndex = 3;
+            bBooksReadThisYear.Text = "Books Read This Year";
+            bBooksReadThisYear.UseVisualStyleBackColor = true;
+            bBooksReadThisYear.Click += bBooksReadThisYear_Click;
+            // 
             // MainMenuWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(bBooksReadThisYear);
             Controls.Add(bAddNewCompletion);
             Controls.Add(bUpdateCover);
             Controls.Add(bAddNewBook);
@@ -81,5 +93,6 @@
         private Button bAddNewBook;
         private Button bUpdateCover;
         private Button bAddNewCompletion;
+        private Button bBooksReadThisYear;
     }
 }
