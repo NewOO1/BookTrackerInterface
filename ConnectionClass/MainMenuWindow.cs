@@ -53,7 +53,13 @@ namespace ConnectionClass
         private void bBooksReadThisYear_Click(object sender, EventArgs e)
         {
             BooksReadThisYear cBooksReadThisYear = new BooksReadThisYear(cConnectionString, cCoverLocation);
-            cBooksReadThisYear.Show();  
+            cBooksReadThisYear.Show();
+        }
+
+        private void bAllBooks_Click(object sender, EventArgs e)
+        {
+            AllBooksRead cAllBooksRead = new AllBooksRead(cConnectionString, cCoverLocation);
+            cAllBooksRead.Show();
         }
     }
 }

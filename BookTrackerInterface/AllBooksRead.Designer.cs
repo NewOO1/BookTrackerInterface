@@ -1,6 +1,6 @@
 ﻿namespace FunctionalityForms
 {
-    partial class BooksReadThisYear
+    partial class AllBooksRead
     {
         /// <summary>
         /// Required designer variable.
@@ -78,8 +78,8 @@
             Controls.Add(tbTotal);
             Controls.Add(tlp);
             Controls.Add(bTrigger);
-            Name = "BooksReadThisYear";
-            Text = "BooksReadThisYear";
+            Name = "TotalBooksRead";
+            Text = "TotalBooksRead";
             ResumeLayout(false);
             PerformLayout();
         }

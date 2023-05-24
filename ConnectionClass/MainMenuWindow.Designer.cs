@@ -32,6 +32,7 @@
             bUpdateCover = new Button();
             bAddNewCompletion = new Button();
             bBooksReadThisYear = new Button();
+            bAllBooks = new Button();
             SuspendLayout();
             // 
             // bAddNewBook
@@ -46,7 +47,7 @@
             // 
             // bUpdateCover
             // 
-            bUpdateCover.Location = new Point(39, 134);
+            bUpdateCover.Location = new Point(39, 130);
             bUpdateCover.Name = "bUpdateCover";
             bUpdateCover.Size = new Size(133, 23);
             bUpdateCover.TabIndex = 1;
@@ -56,7 +57,7 @@
             // 
             // bAddNewCompletion
             // 
-            bAddNewCompletion.Location = new Point(39, 197);
+            bAddNewCompletion.Location = new Point(39, 100);
             bAddNewCompletion.Name = "bAddNewCompletion";
             bAddNewCompletion.Size = new Size(133, 24);
             bAddNewCompletion.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // bBooksReadThisYear
             // 
-            bBooksReadThisYear.Location = new Point(39, 249);
+            bBooksReadThisYear.Location = new Point(39, 159);
             bBooksReadThisYear.Name = "bBooksReadThisYear";
             bBooksReadThisYear.Size = new Size(133, 23);
             bBooksReadThisYear.TabIndex = 3;
@@ -74,11 +75,22 @@
             bBooksReadThisYear.UseVisualStyleBackColor = true;
             bBooksReadThisYear.Click += bBooksReadThisYear_Click;
             // 
+            // bAllBooks
+            // 
+            bAllBooks.Location = new Point(39, 188);
+            bAllBooks.Name = "bAllBooks";
+            bAllBooks.Size = new Size(133, 23);
+            bAllBooks.TabIndex = 4;
+            bAllBooks.Text = "All Books Read";
+            bAllBooks.UseVisualStyleBackColor = true;
+            bAllBooks.Click += bAllBooks_Click;
+            // 
             // MainMenuWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(bAllBooks);
             Controls.Add(bBooksReadThisYear);
             Controls.Add(bAddNewCompletion);
             Controls.Add(bUpdateCover);
@@ -94,5 +106,6 @@
         private Button bUpdateCover;
         private Button bAddNewCompletion;
         private Button bBooksReadThisYear;
+        private Button bAllBooks;
     }
 }

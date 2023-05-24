@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,21 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using System.Xml.Linq;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 
 namespace FunctionalityForms
 {
-    public partial class BooksReadThisYear : Form
+    public partial class AllBooksRead : Form
     {
         private string cConnectionString;
         private string cNewCoverFileLocation;
 
         private const int MinColumnWidth = 196;
 
-        public BooksReadThisYear(string passedConnection, string passedCover)
+        public AllBooksRead(string passedConnection, string passedCover)
         {
             InitializeComponent();
 
@@ -59,7 +55,6 @@ namespace FunctionalityForms
                                                  h.finished_date as FinishedDate
                                          FROM books b
                                          JOIN book_history h ON b.id = h.book_id
-                                         WHERE YEAR(h.finished_date) = YEAR(CURDATE())
                                          GROUP BY b.id, h.finished_date
                                          ORDER BY h.finished_date ASC";
 
@@ -149,5 +144,6 @@ namespace FunctionalityForms
             tlp.Controls.Clear();
             FillOut();
         }
+
     }
 }

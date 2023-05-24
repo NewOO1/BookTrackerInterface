@@ -64,6 +64,7 @@
             tbNum.ReadOnly = true;
             tbNum.Size = new Size(26, 23);
             tbNum.TabIndex = 2;
+            tbNum.TextAlign = HorizontalAlignment.Center;
             // 
             // tbAuthor
             // 
