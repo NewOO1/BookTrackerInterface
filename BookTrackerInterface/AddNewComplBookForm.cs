@@ -465,7 +465,10 @@ namespace FunctionalityForms
 
                 // You can now use the file for whatever you need
                 bookCover.Text = filePath;
+
+                
             }
+            
         }
 
     

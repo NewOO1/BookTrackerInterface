@@ -74,7 +74,10 @@ namespace FunctionalityForms
 
                 // You can now use the file for whatever you need
                 tbCover.Text = filePath;
+                pbCover.Image = Image.FromFile(filePath);
             }
+
+
         }
 
         private void bSubmit_Click(object sender, EventArgs e)
@@ -114,23 +117,25 @@ namespace FunctionalityForms
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Insert into books table successful.");
+                            //MessageBox.Show("Insert into books table successful.");
                         }
                         else
                         {
+                            //Only show message box if issue
                             MessageBox.Show("Insert into books table failed.");
                         }
                     }
 
                     connection.Close();
 
-                    
+
                 }
-                
+
                 //Reset Stuff (should functionalize through FunctionalityForms function
                 cbTitle.Text = string.Empty;
                 cbTitle.Items.Clear();
                 tbCover.Text = string.Empty;
+                pbCover.Image = null;
                 FillTitleComboBox();
             }
         }

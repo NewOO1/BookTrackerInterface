@@ -34,6 +34,8 @@
             cbTitle = new ComboBox();
             bCover = new Button();
             bSubmit = new Button();
+            pbCover = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pbCover).BeginInit();
             SuspendLayout();
             // 
             // labelTitle
@@ -83,7 +85,7 @@
             // 
             // bSubmit
             // 
-            bSubmit.Location = new Point(22, 150);
+            bSubmit.Location = new Point(34, 337);
             bSubmit.Name = "bSubmit";
             bSubmit.Size = new Size(75, 23);
             bSubmit.TabIndex = 5;
@@ -91,11 +93,21 @@
             bSubmit.UseVisualStyleBackColor = true;
             bSubmit.Click += bSubmit_Click;
             // 
+            // pbCover
+            // 
+            pbCover.Location = new Point(96, 110);
+            pbCover.Name = "pbCover";
+            pbCover.Size = new Size(168, 221);
+            pbCover.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbCover.TabIndex = 6;
+            pbCover.TabStop = false;
+            // 
             // UpdateCoversForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(427, 197);
+            ClientSize = new Size(490, 382);
+            Controls.Add(pbCover);
             Controls.Add(bSubmit);
             Controls.Add(bCover);
             Controls.Add(cbTitle);
@@ -104,6 +116,7 @@
             Controls.Add(labelTitle);
             Name = "UpdateCoversForm";
             Text = "UpdateCoversForm";
+            ((System.ComponentModel.ISupportInitialize)pbCover).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -116,5 +129,6 @@
         private ComboBox cbTitle;
         private Button bCover;
         private Button bSubmit;
+        private PictureBox pbCover;
     }
 }
