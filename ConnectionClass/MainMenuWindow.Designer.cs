@@ -30,13 +30,14 @@
         {
             bAddNewBook = new Button();
             bUpdateCover = new Button();
+            bAddNewCompletion = new Button();
             SuspendLayout();
             // 
             // bAddNewBook
             // 
             bAddNewBook.Location = new Point(39, 71);
             bAddNewBook.Name = "bAddNewBook";
-            bAddNewBook.Size = new Size(118, 23);
+            bAddNewBook.Size = new Size(133, 23);
             bAddNewBook.TabIndex = 0;
             bAddNewBook.Text = "Add New Book";
             bAddNewBook.UseVisualStyleBackColor = true;
@@ -46,17 +47,28 @@
             // 
             bUpdateCover.Location = new Point(39, 134);
             bUpdateCover.Name = "bUpdateCover";
-            bUpdateCover.Size = new Size(118, 23);
+            bUpdateCover.Size = new Size(133, 23);
             bUpdateCover.TabIndex = 1;
             bUpdateCover.Text = "Update Covers";
             bUpdateCover.UseVisualStyleBackColor = true;
             bUpdateCover.Click += bUpdateCover_Click;
+            // 
+            // bAddNewCompletion
+            // 
+            bAddNewCompletion.Location = new Point(39, 197);
+            bAddNewCompletion.Name = "bAddNewCompletion";
+            bAddNewCompletion.Size = new Size(133, 24);
+            bAddNewCompletion.TabIndex = 2;
+            bAddNewCompletion.Text = "Add New Completion";
+            bAddNewCompletion.UseVisualStyleBackColor = true;
+            bAddNewCompletion.Click += bAddNewCompletion_Click;
             // 
             // MainMenuWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(bAddNewCompletion);
             Controls.Add(bUpdateCover);
             Controls.Add(bAddNewBook);
             Name = "MainMenuWindow";
@@ -68,5 +80,6 @@
 
         private Button bAddNewBook;
         private Button bUpdateCover;
+        private Button bAddNewCompletion;
     }
 }

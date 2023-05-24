@@ -13,12 +13,12 @@ using BookTrackerInterface;
 
 namespace FunctionalityForms
 {
-    public partial class AddNewComplBookForm : Form
+    public partial class AddNewBookForm : Form
     {
         private string cConnectionString;
         private string cNewCoverFileLocation;
 
-        public AddNewComplBookForm(string passedConnection, string passedCover)
+        public AddNewBookForm(string passedConnection, string passedCover)
         {
             InitializeComponent();
 
@@ -28,7 +28,7 @@ namespace FunctionalityForms
 
             //Genre Box Setup
             FillGenreListBox(); //Fills out from database
-            bookGenre.Click += bookGenre_Click; //on click make list visable
+            tbGenre.Click += bookGenre_Click; //on click make list visable
             listBookGenre.SelectedIndexChanged += listBookGenre_SelectedIndexChanged; //as items are selected in the listbox add them to the textbox
             listBookGenre.SelectionMode = SelectionMode.MultiExtended; //allow for multi seletion with ctrl or shift
 
@@ -41,8 +41,8 @@ namespace FunctionalityForms
             //Author Box Setup from database
             FillAuthorListBox();
 
-            bookDate.Validating += bookDate_Validating;
-            bookNum.Validating += bookNum_Validating;
+            tbDate.Validating += bookDate_Validating;
+            tbNum.Validating += bookNum_Validating;
         }
 
         private bool listBoxVisible = false;
@@ -52,7 +52,7 @@ namespace FunctionalityForms
         //####################################################################################
         private void Form1_Load(object sender, EventArgs e)
         {
-            bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            tbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
         }
 
@@ -101,7 +101,7 @@ namespace FunctionalityForms
                         while (reader.Read())
                         {
                             string mediumName = reader.GetString("medium_name");
-                            bookMedium.Items.Add(mediumName); // Add each meidum name to the ListBox
+                            cbMedium.Items.Add(mediumName); // Add each meidum name to the ListBox
                         }
                     }
 
@@ -128,7 +128,7 @@ namespace FunctionalityForms
                         while (reader.Read())
                         {
                             string seriesName = reader.GetString("series_name");
-                            bookSeries.Items.Add(seriesName); // Add each meidum name to the ListBox
+                            cbSeries.Items.Add(seriesName); // Add each meidum name to the ListBox
                         }
                     }
                     conn.Close(); // Close the database connection
@@ -154,7 +154,7 @@ namespace FunctionalityForms
                         while (reader.Read())
                         {
                             string authorName = reader.GetString("author");
-                            bookAuthor.Items.Add(authorName); // Add each meidum name to the ListBox
+                            cbAuthor.Items.Add(authorName); // Add each meidum name to the ListBox
                         }
                     }
                     conn.Close(); // Close the database connection
@@ -167,12 +167,12 @@ namespace FunctionalityForms
         //####################################################################################
         private void bookNum_Validating(object? sender, CancelEventArgs e)
         {
-            string enteredValue = bookNum.Text.Trim();
+            string enteredValue = tbNum.Text.Trim();
             if (!int.TryParse(enteredValue, out _) && enteredValue != "")
             {
                 // Display an error message or perform necessary actions when the value is not a valid integer
                 MessageBox.Show("Please enter a numerical value for the book number.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                bookNum.Focus(); // Set focus back to the bookNum TextBox
+                tbNum.Focus(); // Set focus back to the bookNum TextBox
                 e.Cancel = true; // Prevent the focus from moving to the next control
             }
         }
@@ -190,7 +190,7 @@ namespace FunctionalityForms
         }
         private void listBookGenre_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bookGenre.Text = string.Join(",", listBookGenre.SelectedItems.Cast<string>());
+            tbGenre.Text = string.Join(",", listBookGenre.SelectedItems.Cast<string>());
         }
         private void listBookGenre_LostFocus(object sender, EventArgs e)
         {
@@ -205,7 +205,7 @@ namespace FunctionalityForms
         //####################################################################################
         private void bookDate_Validating(object sender, CancelEventArgs e)
         {
-            string enteredDate = bookDate.Text.Trim();
+            string enteredDate = tbDate.Text.Trim();
 
             if (!DateTime.TryParseExact(enteredDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
             {
@@ -283,22 +283,22 @@ namespace FunctionalityForms
         //####################################################################################
         private void Submit_Click(object sender, EventArgs e)
         {
-            string inputTitle = bookTitle.Text.Trim();
-            string inputAuthor = bookAuthor.Text.Trim();
-            string inputSeries = bookSeries.Text.Trim();
+            string inputTitle = tbTitle.Text.Trim();
+            string inputAuthor = cbAuthor.Text.Trim();
+            string inputSeries = cbSeries.Text.Trim();
             if (inputSeries == "") { inputSeries = null; }
-            string inputNum = bookNum.Text.Trim();
+            string inputNum = tbNum.Text.Trim();
             if(inputNum == "") {inputNum = null;}
-            string inputCoverURL = bookCover.Text.Trim();
+            string inputCoverURL = tbCover.Text.Trim();
             DateTime now = DateTime.Now;
-            string inputGenrestring = bookGenre.Text.Trim(); //can be deliniated by ,
+            string inputGenrestring = tbGenre.Text.Trim(); //can be deliniated by ,
             string[] inputGenre = inputGenrestring.Split(',');
-            string inputDate = bookDate.Text.Trim();
+            string inputDate = tbDate.Text.Trim();
             string who = "Seth"; //Seth = 1, Em = 2 for SQL
             if (who == "Seth") { who = "1"; }
-            string inputMedium = bookMedium.Text.Trim();
+            string inputMedium = cbMedium.Text.Trim();
 
-            if (inputTitle == "" || inputAuthor == "" || inputGenrestring == "" || inputMedium == "" || inputCoverURL == "")
+            if (inputTitle == "" || inputAuthor == "" || inputGenrestring == "" || inputMedium == "" || inputCoverURL == "" || inputDate == "")
             {
                 //Cannot Submit because data is missing
                 MessageBox.Show("Please Fill Out Required Fields");
@@ -306,7 +306,7 @@ namespace FunctionalityForms
             else
             {
                 //Check to see if new medium and if so, add to database
-                if (!bookMedium.Items.Contains(inputMedium))
+                if (!cbMedium.Items.Contains(inputMedium))
                 {
                     bookMedium_AddNew(inputMedium);
                 }
@@ -424,16 +424,16 @@ namespace FunctionalityForms
                 }
 
                 //Clear out form for a second book
-                bookTitle.Text = string.Empty;
-                bookSeries.Text = string.Empty;
-                bookAuthor.Text = string.Empty;
-                bookAuthor.Items.Clear();
-                bookNum.Text = string.Empty;
-                bookGenre.Text = string.Empty;
-                bookMedium.Text = string.Empty;
-                bookMedium.Items.Clear();
-                bookCover.Text = string.Empty;
-                bookDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                tbTitle.Text = string.Empty;
+                cbSeries.Text = string.Empty;
+                cbAuthor.Text = string.Empty;
+                cbAuthor.Items.Clear();
+                tbNum.Text = string.Empty;
+                tbGenre.Text = string.Empty;
+                cbMedium.Text = string.Empty;
+                cbMedium.Items.Clear();
+                tbCover.Text = string.Empty;
+                tbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 listBookGenre.Visible = false;
                 listBookGenre.Items.Clear();
                 //Medium Box Setup from database
@@ -464,7 +464,7 @@ namespace FunctionalityForms
                 string filePath = openFileDialog.FileName;
 
                 // You can now use the file for whatever you need
-                bookCover.Text = filePath;
+                tbCover.Text = filePath;
 
                 
             }

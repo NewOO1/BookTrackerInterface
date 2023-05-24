@@ -11,7 +11,7 @@ namespace ConnectionClass
 
         private DockPanel dockPanel;
 
-        public AddNewComplBookForm cAddNewComplBookForm;
+        public AddNewBookForm cAddNewBookForm;
 
         public MainMenuWindow()
         {
@@ -34,7 +34,7 @@ namespace ConnectionClass
 
         private void bAddNewBook_Click(object sender, EventArgs e)
         {
-            AddNewComplBookForm cAddNewComplBookForm = new AddNewComplBookForm(cConnectionString, cCoverLocation);
+            AddNewBookForm cAddNewComplBookForm = new AddNewBookForm(cConnectionString, cCoverLocation);
             cAddNewComplBookForm.Show();
         }
 
@@ -42,6 +42,12 @@ namespace ConnectionClass
         {
             UpdateCoversForm cUpdateCoversForm = new UpdateCoversForm(cConnectionString, cCoverLocation);
             cUpdateCoversForm.Show();
+        }
+
+        private void bAddNewCompletion_Click(object sender, EventArgs e)
+        {
+            AddNewCompletionForm cAddNewCompletionForm = new AddNewCompletionForm(cConnectionString);
+            cAddNewCompletionForm.Show();
         }
     }
 }

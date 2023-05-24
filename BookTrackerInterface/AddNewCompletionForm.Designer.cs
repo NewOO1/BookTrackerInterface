@@ -1,6 +1,6 @@
 ﻿namespace FunctionalityForms
 {
-    partial class UpdateCoversForm
+    partial class AddNewCompletionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,94 +29,91 @@
         private void InitializeComponent()
         {
             labelTitle = new Label();
-            labelCover = new Label();
-            tbCover = new TextBox();
+            labelDate = new Label();
+            labelMedium = new Label();
             cbTitle = new ComboBox();
-            bCover = new Button();
+            tbDate = new TextBox();
+            cbMedium = new ComboBox();
             bSubmit = new Button();
-            pbCover = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pbCover).BeginInit();
             SuspendLayout();
             // 
             // labelTitle
             // 
             labelTitle.AutoSize = true;
             labelTitle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelTitle.Location = new Point(22, 32);
+            labelTitle.Location = new Point(17, 19);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(38, 20);
             labelTitle.TabIndex = 0;
             labelTitle.Text = "Title";
             // 
-            // labelCover
+            // labelDate
             // 
-            labelCover.AutoSize = true;
-            labelCover.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCover.Location = new Point(22, 62);
-            labelCover.Name = "labelCover";
-            labelCover.Size = new Size(47, 20);
-            labelCover.TabIndex = 1;
-            labelCover.Text = "Cover";
+            labelDate.AutoSize = true;
+            labelDate.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDate.Location = new Point(17, 49);
+            labelDate.Name = "labelDate";
+            labelDate.Size = new Size(41, 20);
+            labelDate.TabIndex = 1;
+            labelDate.Text = "Date";
             // 
-            // tbCover
+            // labelMedium
             // 
-            tbCover.Location = new Point(96, 63);
-            tbCover.Name = "tbCover";
-            tbCover.Size = new Size(281, 23);
-            tbCover.TabIndex = 2;
+            labelMedium.AutoSize = true;
+            labelMedium.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelMedium.Location = new Point(15, 81);
+            labelMedium.Name = "labelMedium";
+            labelMedium.Size = new Size(64, 20);
+            labelMedium.TabIndex = 2;
+            labelMedium.Text = "Medium";
             // 
             // cbTitle
             // 
             cbTitle.FormattingEnabled = true;
-            cbTitle.Location = new Point(96, 29);
+            cbTitle.Location = new Point(100, 20);
             cbTitle.Name = "cbTitle";
-            cbTitle.Size = new Size(281, 23);
+            cbTitle.Size = new Size(271, 23);
             cbTitle.TabIndex = 3;
             // 
-            // bCover
+            // tbDate
             // 
-            bCover.Location = new Point(302, 92);
-            bCover.Name = "bCover";
-            bCover.Size = new Size(75, 23);
-            bCover.TabIndex = 4;
-            bCover.Text = "Choose";
-            bCover.UseVisualStyleBackColor = true;
-            bCover.Click += bCover_Click;
+            tbDate.Location = new Point(100, 49);
+            tbDate.Name = "tbDate";
+            tbDate.Size = new Size(123, 23);
+            tbDate.TabIndex = 4;
+            // 
+            // cbMedium
+            // 
+            cbMedium.FormattingEnabled = true;
+            cbMedium.Location = new Point(100, 78);
+            cbMedium.Name = "cbMedium";
+            cbMedium.Size = new Size(121, 23);
+            cbMedium.TabIndex = 5;
             // 
             // bSubmit
             // 
-            bSubmit.Location = new Point(306, 336);
+            bSubmit.Location = new Point(15, 114);
             bSubmit.Name = "bSubmit";
             bSubmit.Size = new Size(75, 23);
-            bSubmit.TabIndex = 5;
-            bSubmit.Text = "Update";
+            bSubmit.TabIndex = 6;
+            bSubmit.Text = "Submit";
             bSubmit.UseVisualStyleBackColor = true;
             bSubmit.Click += bSubmit_Click;
             // 
-            // pbCover
-            // 
-            pbCover.Location = new Point(96, 110);
-            pbCover.Name = "pbCover";
-            pbCover.Size = new Size(149, 226);
-            pbCover.SizeMode = PictureBoxSizeMode.StretchImage;
-            pbCover.TabIndex = 6;
-            pbCover.TabStop = false;
-            // 
-            // UpdateCoversForm
+            // AddNewCompletionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(393, 373);
-            Controls.Add(pbCover);
+            ClientSize = new Size(387, 149);
             Controls.Add(bSubmit);
-            Controls.Add(bCover);
+            Controls.Add(cbMedium);
+            Controls.Add(tbDate);
             Controls.Add(cbTitle);
-            Controls.Add(tbCover);
-            Controls.Add(labelCover);
+            Controls.Add(labelMedium);
+            Controls.Add(labelDate);
             Controls.Add(labelTitle);
-            Name = "UpdateCoversForm";
-            Text = "UpdateCoversForm";
-            ((System.ComponentModel.ISupportInitialize)pbCover).EndInit();
+            Name = "AddNewCompletionForm";
+            Text = "AddNewCompletion";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -124,11 +121,11 @@
         #endregion
 
         private Label labelTitle;
-        private Label labelCover;
-        private TextBox tbCover;
+        private Label labelDate;
+        private Label labelMedium;
         private ComboBox cbTitle;
-        private Button bCover;
+        private TextBox tbDate;
+        private ComboBox cbMedium;
         private Button bSubmit;
-        private PictureBox pbCover;
     }
 }

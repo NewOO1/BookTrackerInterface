@@ -1,6 +1,6 @@
 ﻿namespace FunctionalityForms
 {
-    partial class AddNewComplBookForm
+    partial class AddNewBookForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,25 +30,25 @@
         {
             components = new System.ComponentModel.Container();
             bSubmit = new Button();
-            bookTitle = new TextBox();
+            tbTitle = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             labelTitle = new Label();
             labelSeries = new Label();
-            bookSeries = new ComboBox();
+            cbSeries = new ComboBox();
             labelBookNum = new Label();
-            bookNum = new TextBox();
-            bookAuthor = new ComboBox();
+            tbNum = new TextBox();
+            cbAuthor = new ComboBox();
             labelAuthor = new Label();
-            bookDate = new TextBox();
+            tbDate = new TextBox();
             labelDate = new Label();
-            bookMedium = new ComboBox();
+            cbMedium = new ComboBox();
             labelMedium = new Label();
             labelGenre = new Label();
-            bookGenre = new TextBox();
+            tbGenre = new TextBox();
             listBookGenre = new ListBox();
             labelCover = new Label();
             bCoverFile = new Button();
-            bookCover = new TextBox();
+            tbCover = new TextBox();
             SuspendLayout();
             // 
             // bSubmit
@@ -63,11 +63,11 @@
             // 
             // bookTitle
             // 
-            bookTitle.Location = new Point(127, 41);
-            bookTitle.Name = "bookTitle";
-            bookTitle.Size = new Size(226, 23);
-            bookTitle.TabIndex = 1;
-            bookTitle.TextAlign = HorizontalAlignment.Right;
+            tbTitle.Location = new Point(127, 41);
+            tbTitle.Name = "bookTitle";
+            tbTitle.Size = new Size(226, 23);
+            tbTitle.TabIndex = 1;
+            tbTitle.TextAlign = HorizontalAlignment.Right;
             // 
             // contextMenuStrip1
             // 
@@ -96,13 +96,13 @@
             // 
             // bookSeries
             // 
-            bookSeries.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            bookSeries.AutoCompleteSource = AutoCompleteSource.ListItems;
-            bookSeries.FormattingEnabled = true;
-            bookSeries.Location = new Point(176, 87);
-            bookSeries.Name = "bookSeries";
-            bookSeries.Size = new Size(177, 23);
-            bookSeries.TabIndex = 5;
+            cbSeries.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbSeries.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbSeries.FormattingEnabled = true;
+            cbSeries.Location = new Point(176, 87);
+            cbSeries.Name = "bookSeries";
+            cbSeries.Size = new Size(177, 23);
+            cbSeries.TabIndex = 5;
             // 
             // labelBookNum
             // 
@@ -116,21 +116,21 @@
             // 
             // bookNum
             // 
-            bookNum.Location = new Point(328, 135);
-            bookNum.Name = "bookNum";
-            bookNum.Size = new Size(25, 23);
-            bookNum.TabIndex = 7;
-            bookNum.TextAlign = HorizontalAlignment.Right;
+            tbNum.Location = new Point(328, 135);
+            tbNum.Name = "bookNum";
+            tbNum.Size = new Size(25, 23);
+            tbNum.TabIndex = 7;
+            tbNum.TextAlign = HorizontalAlignment.Right;
             // 
             // bookAuthor
             // 
-            bookAuthor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            bookAuthor.AutoCompleteSource = AutoCompleteSource.ListItems;
-            bookAuthor.FormattingEnabled = true;
-            bookAuthor.Location = new Point(176, 181);
-            bookAuthor.Name = "bookAuthor";
-            bookAuthor.Size = new Size(177, 23);
-            bookAuthor.TabIndex = 9;
+            cbAuthor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbAuthor.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbAuthor.FormattingEnabled = true;
+            cbAuthor.Location = new Point(176, 181);
+            cbAuthor.Name = "bookAuthor";
+            cbAuthor.Size = new Size(177, 23);
+            cbAuthor.TabIndex = 9;
             // 
             // labelAuthor
             // 
@@ -144,11 +144,11 @@
             // 
             // bookDate
             // 
-            bookDate.Location = new Point(176, 300);
-            bookDate.Name = "bookDate";
-            bookDate.Size = new Size(177, 23);
-            bookDate.TabIndex = 11;
-            bookDate.TextAlign = HorizontalAlignment.Right;
+            tbDate.Location = new Point(176, 300);
+            tbDate.Name = "bookDate";
+            tbDate.Size = new Size(177, 23);
+            tbDate.TabIndex = 11;
+            tbDate.TextAlign = HorizontalAlignment.Right;
             // 
             // labelDate
             // 
@@ -162,13 +162,13 @@
             // 
             // bookMedium
             // 
-            bookMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            bookMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
-            bookMedium.FormattingEnabled = true;
-            bookMedium.Location = new Point(233, 420);
-            bookMedium.Name = "bookMedium";
-            bookMedium.Size = new Size(119, 23);
-            bookMedium.TabIndex = 13;
+            cbMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbMedium.FormattingEnabled = true;
+            cbMedium.Location = new Point(233, 420);
+            cbMedium.Name = "bookMedium";
+            cbMedium.Size = new Size(119, 23);
+            cbMedium.TabIndex = 13;
             // 
             // labelMedium
             // 
@@ -192,11 +192,11 @@
             // 
             // bookGenre
             // 
-            bookGenre.Location = new Point(176, 358);
-            bookGenre.Name = "bookGenre";
-            bookGenre.Size = new Size(177, 23);
-            bookGenre.TabIndex = 17;
-            bookGenre.TextAlign = HorizontalAlignment.Right;
+            tbGenre.Location = new Point(176, 358);
+            tbGenre.Name = "bookGenre";
+            tbGenre.Size = new Size(177, 23);
+            tbGenre.TabIndex = 17;
+            tbGenre.TextAlign = HorizontalAlignment.Right;
             // 
             // listBookGenre
             // 
@@ -230,35 +230,35 @@
             // 
             // bookCover
             // 
-            bookCover.Location = new Point(127, 238);
-            bookCover.Name = "bookCover";
-            bookCover.Size = new Size(226, 23);
-            bookCover.TabIndex = 22;
-            bookCover.TextAlign = HorizontalAlignment.Right;
+            tbCover.Location = new Point(127, 238);
+            tbCover.Name = "bookCover";
+            tbCover.Size = new Size(226, 23);
+            tbCover.TabIndex = 22;
+            tbCover.TextAlign = HorizontalAlignment.Right;
             // 
             // AddNewComplBookForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 569);
-            Controls.Add(bookCover);
+            Controls.Add(tbCover);
             Controls.Add(bCoverFile);
             Controls.Add(labelCover);
             Controls.Add(listBookGenre);
-            Controls.Add(bookGenre);
+            Controls.Add(tbGenre);
             Controls.Add(labelGenre);
-            Controls.Add(bookMedium);
+            Controls.Add(cbMedium);
             Controls.Add(labelMedium);
-            Controls.Add(bookDate);
+            Controls.Add(tbDate);
             Controls.Add(labelDate);
-            Controls.Add(bookAuthor);
+            Controls.Add(cbAuthor);
             Controls.Add(labelAuthor);
-            Controls.Add(bookNum);
+            Controls.Add(tbNum);
             Controls.Add(labelBookNum);
-            Controls.Add(bookSeries);
+            Controls.Add(cbSeries);
             Controls.Add(labelSeries);
             Controls.Add(labelTitle);
-            Controls.Add(bookTitle);
+            Controls.Add(tbTitle);
             Controls.Add(bSubmit);
             Name = "AddNewComplBookForm";
             Text = "New Book";
@@ -270,24 +270,24 @@
         #endregion
 
         private Button bSubmit;
-        private TextBox bookTitle;
+        private TextBox tbTitle;
         private ContextMenuStrip contextMenuStrip1;
         private Label labelTitle;
         private Label labelSeries;
-        private ComboBox bookSeries;
+        private ComboBox cbSeries;
         private Label labelBookNum;
-        private TextBox bookNum;
-        private ComboBox bookAuthor;
+        private TextBox tbNum;
+        private ComboBox cbAuthor;
         private Label labelAuthor;
-        private TextBox bookDate;
+        private TextBox tbDate;
         private Label labelDate;
-        private ComboBox bookMedium;
+        private ComboBox cbMedium;
         private Label labelMedium;
         private Label labelGenre;
-        private TextBox bookGenre;
+        private TextBox tbGenre;
         private ListBox listBookGenre;
         private Label labelCover;
         private Button bCoverFile;
-        private TextBox bookCover;
+        private TextBox tbCover;
     }
 }
