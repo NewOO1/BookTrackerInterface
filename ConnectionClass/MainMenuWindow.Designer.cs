@@ -37,7 +37,7 @@
             // 
             // bAddNewBook
             // 
-            bAddNewBook.Location = new Point(39, 71);
+            bAddNewBook.Location = new Point(12, 13);
             bAddNewBook.Name = "bAddNewBook";
             bAddNewBook.Size = new Size(133, 23);
             bAddNewBook.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             // bUpdateCover
             // 
-            bUpdateCover.Location = new Point(39, 130);
+            bUpdateCover.Location = new Point(12, 72);
             bUpdateCover.Name = "bUpdateCover";
             bUpdateCover.Size = new Size(133, 23);
             bUpdateCover.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // bAddNewCompletion
             // 
-            bAddNewCompletion.Location = new Point(39, 100);
+            bAddNewCompletion.Location = new Point(12, 42);
             bAddNewCompletion.Name = "bAddNewCompletion";
             bAddNewCompletion.Size = new Size(133, 24);
             bAddNewCompletion.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // bBooksReadThisYear
             // 
-            bBooksReadThisYear.Location = new Point(39, 159);
+            bBooksReadThisYear.Location = new Point(12, 101);
             bBooksReadThisYear.Name = "bBooksReadThisYear";
             bBooksReadThisYear.Size = new Size(133, 23);
             bBooksReadThisYear.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // bAllBooks
             // 
-            bAllBooks.Location = new Point(39, 188);
+            bAllBooks.Location = new Point(12, 130);
             bAllBooks.Name = "bAllBooks";
             bAllBooks.Size = new Size(133, 23);
             bAllBooks.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(156, 165);
             Controls.Add(bAllBooks);
             Controls.Add(bBooksReadThisYear);
             Controls.Add(bAddNewCompletion);

@@ -24,7 +24,7 @@ namespace FunctionalityForms
 
             this.cConnectionString = passedConnection;
             this.cNewCoverFileLocation = passedCover;
-            
+
 
             //Genre Box Setup
             FillGenreListBox(); //Fills out from database
@@ -198,8 +198,6 @@ namespace FunctionalityForms
             listBookGenre.Visible = listBoxVisible;
         }
 
-
-
         //####################################################################################
         //Validates that there is a Date in YYYY-MM-DD format in the Date textbox
         //####################################################################################
@@ -288,7 +286,7 @@ namespace FunctionalityForms
             string inputSeries = cbSeries.Text.Trim();
             if (inputSeries == "") { inputSeries = null; }
             string inputNum = tbNum.Text.Trim();
-            if(inputNum == "") {inputNum = null;}
+            if (inputNum == "") { inputNum = null; }
             string inputCoverURL = tbCover.Text.Trim();
             DateTime now = DateTime.Now;
             string inputGenrestring = tbGenre.Text.Trim(); //can be deliniated by ,
@@ -465,12 +463,13 @@ namespace FunctionalityForms
 
                 // You can now use the file for whatever you need
                 tbCover.Text = filePath;
+                pbCover.Image = Image.FromFile(filePath);
 
-                
+
             }
-            
+
         }
 
-    
+
     }
 }
