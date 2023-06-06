@@ -12,7 +12,7 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Relational;
-//succceesssss
+
 namespace FunctionalityForms
 {
     public partial class BooksReadThisYear : Form
