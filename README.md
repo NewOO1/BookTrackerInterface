@@ -1,6 +1,6 @@
 # BookTrackerInterface
 
-This is a C# Winform app that manages data going into my BookTracker database. As well as has a build out of tools I can use
+This is a C# Winform app that manages data going into my BookTracker database as well as has a set of tools I can use
 against the data in the database.
 
 Curent Toolset Includes:
