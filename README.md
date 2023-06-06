@@ -17,6 +17,7 @@ BTProd :: production version of app (uses production database)
 BTTest :: test version of app (uses an exact copy of production database for testing)
 
   Both hold the following
+  
     - cConnectionString :: for accessing the database 
     - cCoverLocation :: for where to store the images
 
