@@ -22,8 +22,8 @@ BTTest :: test version of app (uses an exact copy of production database for tes
     - cCoverLocation :: for where to store the images
 
 Images are located at the following location by default and should be changed accordingly
-  C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\
-  C:\Users\edens\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImagesTest\
+  C:\Users\%username%\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImages\
+  C:\Users\%username%\OneDrive\Documents\ProjectsHobbies\BookTracker\CoverImagesTest\
   
 References Required:
 - mysql-connector-net-8.0.33
