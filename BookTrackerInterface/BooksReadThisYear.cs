@@ -22,6 +22,8 @@ namespace FunctionalityForms
 
         private const int MinColumnWidth = 196;
 
+        List<BookInfo> books = new List<BookInfo>();
+
         public BooksReadThisYear(string passedConnection, string passedCover)
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace FunctionalityForms
             this.cConnectionString = passedConnection;
             this.cNewCoverFileLocation = passedCover;
 
+            GetBooks();
 
             // Initialize with the current form size
             AdjustColumnCount(tlp);
@@ -41,7 +44,7 @@ namespace FunctionalityForms
 
         }
 
-        private void FillOut()
+        private void GetBooks()
         {
             //tpl.Controls.Clear();
 
@@ -73,19 +76,23 @@ namespace FunctionalityForms
 
                         while (reader.Read())
                         {
-                            string title = reader["Title"].ToString();
-                            string author = reader["Author"].ToString();
-                            string series = reader["SeriesName"].ToString();
-                            string num = reader["BookNumber"].ToString();
-                            string coverFilePath = reader["CoverFilepath"].ToString();
+                            //Each iteration of the read stores the info into a single class of type bookInfo
+                            var bookInfo = new BookInfo();
+
+                            bookInfo.cTitle = reader["Title"].ToString();
+                            bookInfo.cAuthor = reader["Author"].ToString();
+                            bookInfo.cSeries = reader["SeriesName"].ToString();
+                            bookInfo.cBookNumber = reader["BookNumber"].ToString();
+                            bookInfo.cCoverPath = reader["CoverFilepath"].ToString();
                             string finishedDate = reader["FinishedDate"].ToString();
                             DateTime dateTime = DateTime.Parse(finishedDate); // Parse the string into a DateTime object
-                            finishedDate = dateTime.ToShortDateString(); // Convert to short date string
+                            bookInfo.cFinishDate = dateTime.ToShortDateString(); // Convert to short date string
 
-                            BookDataDisplay cBookDataDisplay = new BookDataDisplay(cNewCoverFileLocation, title, series, author, num, coverFilePath, finishedDate);
+                            //This makes a new display of all the types, it will be bookInfo
+                            //BookDataDisplay cBookDataDisplay = new BookDataDisplay(cNewCoverFileLocation, title, series, author, num, coverFilePath, finishedDate);
 
                             //finishedDate = finishedDate.Substring(0, 10);
-
+                            /*
                             if (col == 0)
                             {
                                 // If it's the first column of a row, add a new row
@@ -103,23 +110,16 @@ namespace FunctionalityForms
                                 row++; // Move to next row
                             }
 
-                            count++;
+                            count++; 
+                            */
 
-
-
-
-                            //tlp.Controls.Add(cBookDataDisplay, 0, currRow);
-                            //cBookDataDisplay.Location = new Point(50, 50);
-                            //this.Controls.Add(cBookDataDisplay);
-
-                            //currCol++;
-                            //currRow++;
+                            //Add to list of type bookKInfo as a cache
+                            books.Add(bookInfo);
+                  
                         }
                     }
                 }
-            }
-
-            tbTotal.Text = tlp.Controls.Count.ToString();
+            }            
 
         }
 
@@ -140,14 +140,44 @@ namespace FunctionalityForms
                     tpl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
                 }
                 tpl.Controls.Clear();
-                FillOut();
+                FillOut(tpl);
+                //GetBooks();
             }
+        }
+
+        private void FillOut(TableLayoutPanel tpl)
+        {
+            tpl.Controls.Clear();
+
+            int numColumns = tpl.ColumnCount;
+            int numRows = (books.Count + numColumns - 1) / numColumns;
+
+            tpl.RowCount = numRows;
+
+            for (int i = 0; i < books.Count; i++)
+            {
+                var bookInfo = books[i];
+
+                // Create a new BookDataDisplay and set its properties based on the current BookInfo
+                BookDataDisplay cBookDataDisplay = new BookDataDisplay(cNewCoverFileLocation, bookInfo.cTitle, bookInfo.cSeries, bookInfo.cAuthor, bookInfo.cBookNumber, bookInfo.cCoverPath, bookInfo.cFinishDate);
+               
+
+                // Calculate the row and column indices
+                int row = i / numColumns;
+                int column = i % numColumns;
+
+                // Add the BookDataDisplay to the TableLayoutPanel
+                tpl.Controls.Add(cBookDataDisplay, column, row);
+            }
+
+            tbTotal.Text = tlp.Controls.Count.ToString();
         }
 
         private void bTrigger_Click(object sender, EventArgs e)
         {
             tlp.Controls.Clear();
-            FillOut();
+            GetBooks();
+            //AdjustColumnCount(tpl);
         }
     }
 }
