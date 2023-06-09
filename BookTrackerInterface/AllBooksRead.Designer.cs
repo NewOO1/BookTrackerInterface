@@ -28,20 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            bTrigger = new Button();
             tlp = new TableLayoutPanel();
             tbTotal = new TextBox();
             SuspendLayout();
-            // 
-            // bTrigger
-            // 
-            bTrigger.Location = new Point(12, 12);
-            bTrigger.Name = "bTrigger";
-            bTrigger.Size = new Size(75, 23);
-            bTrigger.TabIndex = 0;
-            bTrigger.Text = "Show";
-            bTrigger.UseVisualStyleBackColor = true;
-            bTrigger.Click += bTrigger_Click;
             // 
             // tlp
             // 
@@ -63,13 +52,13 @@
             tbTotal.BackColor = SystemColors.Control;
             tbTotal.BorderStyle = BorderStyle.None;
             tbTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            tbTotal.Location = new Point(121, 12);
+            tbTotal.Location = new Point(12, 12);
             tbTotal.Name = "tbTotal";
             tbTotal.Size = new Size(103, 28);
             tbTotal.TabIndex = 2;
             tbTotal.TextAlign = HorizontalAlignment.Center;
             // 
-            // BooksReadThisYear
+            // AllBooksRead
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -77,16 +66,13 @@
             ClientSize = new Size(1272, 824);
             Controls.Add(tbTotal);
             Controls.Add(tlp);
-            Controls.Add(bTrigger);
-            Name = "TotalBooksRead";
+            Name = "AllBooksRead";
             Text = "TotalBooksRead";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button bTrigger;
         private TableLayoutPanel tlp;
         private TextBox tbTotal;
     }

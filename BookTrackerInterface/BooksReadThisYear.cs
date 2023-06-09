@@ -115,11 +115,11 @@ namespace FunctionalityForms
 
                             //Add to list of type bookKInfo as a cache
                             books.Add(bookInfo);
-                  
+
                         }
                     }
                 }
-            }            
+            }
 
         }
 
@@ -160,7 +160,7 @@ namespace FunctionalityForms
 
                 // Create a new BookDataDisplay and set its properties based on the current BookInfo
                 BookDataDisplay cBookDataDisplay = new BookDataDisplay(cNewCoverFileLocation, bookInfo.cTitle, bookInfo.cSeries, bookInfo.cAuthor, bookInfo.cBookNumber, bookInfo.cCoverPath, bookInfo.cFinishDate);
-               
+
 
                 // Calculate the row and column indices
                 int row = i / numColumns;

@@ -134,8 +134,9 @@ namespace FunctionalityForms
                     tpl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
                 }
                 tpl.Controls.Clear();
-                FillOut(tpl);
+                //FillOut(tpl);
             }
+            FillOut(tpl);
         }
 
         private void FillOut(TableLayoutPanel tpl)
@@ -170,6 +171,7 @@ namespace FunctionalityForms
         {
             tlp.Controls.Clear();
             GetBooks();
+            AdjustColumnCount(tlp);
         }
 
     }
