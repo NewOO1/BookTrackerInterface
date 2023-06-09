@@ -47,7 +47,6 @@ namespace FunctionalityForms
             {
                 connection.Open();
 
-
                 // Insert into books table
                 string insertBooksSql = @"SELECT b.name as Title, 
                                                  b.author as Author, 
