@@ -8,7 +8,7 @@ namespace ConnectionClass
     {
         public string cConnectionString = null;
         public string cCoverLocation = null;
-
+        public string Name { get; set; }
         private DockPanel dockPanel;
 
         public AddNewBookForm cAddNewBookForm;
@@ -21,8 +21,13 @@ namespace ConnectionClass
             //var theme = new ThemeVS2015();
             //this.dockPanel.Theme = theme;
 
+            Text = "Book Tracker Hub";
+
             this.dockPanel.Dock = DockStyle.Fill;
         }
+
+
+
 
         public void Initialize()
         {
