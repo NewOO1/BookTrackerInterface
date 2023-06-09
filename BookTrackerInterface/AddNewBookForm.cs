@@ -233,7 +233,7 @@ namespace FunctionalityForms
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("New Genre added to Genres");
+                        //MessageBox.Show("New Genre added to Genres");
                     }
                     else
                     {
@@ -265,7 +265,7 @@ namespace FunctionalityForms
 
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("New medium added to mediums");
+                        //MessageBox.Show("New medium added to mediums");
                     }
                     else
                     {
@@ -345,7 +345,7 @@ namespace FunctionalityForms
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Insert into books table successful.");
+                            //MessageBox.Show("Insert into books table successful.");
                         }
                         else
                         {
@@ -367,7 +367,7 @@ namespace FunctionalityForms
 
                             if (rowsAffected > 0)
                             {
-                                MessageBox.Show("Insert into book_genre_associations table successful.");
+                                //MessageBox.Show("Insert into book_genre_associations table successful.");
                             }
                             else
                             {
@@ -389,7 +389,7 @@ namespace FunctionalityForms
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Insert into book_history table successful.");
+                            //MessageBox.Show("Insert into book_history table successful.");
                         }
                         else
                         {
@@ -409,7 +409,7 @@ namespace FunctionalityForms
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Insert into book_medium_associations table successful.");
+                            //MessageBox.Show("Insert into book_medium_associations table successful.");
                         }
                         else
                         {

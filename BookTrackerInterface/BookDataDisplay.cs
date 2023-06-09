@@ -14,6 +14,7 @@ namespace FunctionalityForms
     {
         private string cNewCoverFileLocation;
 
+
         public BookDataDisplay(string passedCoverFileLocation, string title, string series, string author, string num, string coverfilePath, string datedone)
         {
             InitializeComponent();

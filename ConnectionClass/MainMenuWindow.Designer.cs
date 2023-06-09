@@ -81,7 +81,7 @@
             bAllBooks.Name = "bAllBooks";
             bAllBooks.Size = new Size(133, 23);
             bAllBooks.TabIndex = 4;
-            bAllBooks.Text = "All Books Reads";
+            bAllBooks.Text = "All Books Read";
             bAllBooks.UseVisualStyleBackColor = true;
             bAllBooks.Click += bAllBooks_Click;
             // 
@@ -89,7 +89,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(580, 481);
+            ClientSize = new Size(261, 248);
             Controls.Add(bAllBooks);
             Controls.Add(bBooksReadThisYear);
             Controls.Add(bAddNewCompletion);
