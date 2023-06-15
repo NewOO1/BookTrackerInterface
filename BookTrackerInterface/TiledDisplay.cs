@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,45 +7,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using System.Xml.Linq;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Relational;
 
 namespace FunctionalityForms
 {
-    public partial class BooksReadThisYear : Form
+    public partial class TiledDisplay : Form
     {
         private string cConnectionString;
         private string cNewCoverFileLocation;
+        private string cInsertBooksSql;
 
         private const int MinColumnWidth = 196;
 
         List<BookDataDisplay> books = new List<BookDataDisplay>();
 
-        public BooksReadThisYear(string passedConnection, string passedCover)
+        public TiledDisplay(string passedConnection, string passedCover, string passedSqlQuery)
         {
             InitializeComponent();
 
             this.cConnectionString = passedConnection;
             this.cNewCoverFileLocation = passedCover;
+            this.cInsertBooksSql = passedSqlQuery;
 
-            //SQL query to cache current books
             GetBooks();
 
             // Initialize with the current form size
             AdjustColumnCount(tlp);
 
+
             // Handle the Resize event to adjust the column count when the form size changes
             this.Resize += (sender, e) => AdjustColumnCount(tlp);
+
+            //tbTotal.Text = tlp.Controls.Count;
+
         }
 
         private void GetBooks()
         {
+            //tpl.Controls.Clear();
+
             using (MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
                 connection.Open();
 
+                /*
                 // Insert into books table
                 string insertBooksSql = @"SELECT b.name as Title, 
                                                  b.author as Author, 
@@ -56,14 +60,14 @@ namespace FunctionalityForms
                                                  h.finished_date as FinishedDate
                                          FROM books b
                                          JOIN book_history h ON b.id = h.book_id
-                                         WHERE YEAR(h.finished_date) = YEAR(CURDATE())
                                          GROUP BY b.id, h.finished_date
-                                         ORDER BY h.finished_date ASC";
+                                         ORDER BY h.finished_date ASC";*/
 
-                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBooksSql, connection))
+                using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(cInsertBooksSql, connection))
                 {
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
+
                         while (reader.Read())
                         {
                             //Each iteration of the read stores the info into a single class of type bookInfo
@@ -71,12 +75,12 @@ namespace FunctionalityForms
                             DateTime dateTime = DateTime.Parse(finishedDate); // Parse the string into a DateTime object
 
                             var bookCache = new BookDataDisplay(
-                                cNewCoverFileLocation, 
-                                reader["Title"].ToString(), 
-                                reader["SeriesName"].ToString(), 
-                                reader["Author"].ToString(), 
-                                reader["BookNumber"].ToString(), 
-                                reader["CoverFilepath"].ToString(), 
+                                cNewCoverFileLocation,
+                                reader["Title"].ToString(),
+                                reader["SeriesName"].ToString(),
+                                reader["Author"].ToString(),
+                                reader["BookNumber"].ToString(),
+                                reader["CoverFilepath"].ToString(),
                                 dateTime.ToShortDateString());
 
 
@@ -109,6 +113,7 @@ namespace FunctionalityForms
                 tpl.Controls.Clear();
                 FillOut(tpl);
             }
+            //FillOut(tpl);
         }
 
         private void FillOut(TableLayoutPanel tpl)
@@ -139,6 +144,7 @@ namespace FunctionalityForms
         {
             tlp.Controls.Clear();
             GetBooks();
+
         }
     }
 }

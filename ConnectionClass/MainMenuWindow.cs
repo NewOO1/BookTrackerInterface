@@ -13,6 +13,29 @@ namespace ConnectionClass
 
         public AddNewBookForm cAddNewBookForm;
 
+        public string cSQLQuery_AllBooksRead = @"SELECT b.name as Title, 
+                                                 b.author as Author, 
+                                                 b.series_name as SeriesName, 
+                                                 b.book_number_in_series as BookNumber,
+                                                 b.image_url as CoverFilepath,
+                                                 h.finished_date as FinishedDate
+                                         FROM books b
+                                         JOIN book_history h ON b.id = h.book_id
+                                         GROUP BY b.id, h.finished_date
+                                         ORDER BY h.finished_date ASC";
+
+        public string cSQLQuery_BooksReadThisYear = @"SELECT b.name as Title, 
+                                                 b.author as Author, 
+                                                 b.series_name as SeriesName, 
+                                                 b.book_number_in_series as BookNumber,
+                                                 b.image_url as CoverFilepath,
+                                                 h.finished_date as FinishedDate
+                                         FROM books b
+                                         JOIN book_history h ON b.id = h.book_id
+                                         WHERE YEAR(h.finished_date) = YEAR(CURDATE())
+                                         GROUP BY b.id, h.finished_date
+                                         ORDER BY h.finished_date ASC";
+
         public MainMenuWindow()
         {
             InitializeComponent();
@@ -57,13 +80,17 @@ namespace ConnectionClass
 
         private void bBooksReadThisYear_Click(object sender, EventArgs e)
         {
-            BooksReadThisYear cBooksReadThisYear = new BooksReadThisYear(cConnectionString, cCoverLocation);
+            TiledDisplay cBooksReadThisYear = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_BooksReadThisYear);
+
+            //BooksReadThisYear cBooksReadThisYear = new BooksReadThisYear(cConnectionString, cCoverLocation);
             cBooksReadThisYear.Show();
         }
 
         private void bAllBooks_Click(object sender, EventArgs e)
         {
-            AllBooksRead cAllBooksRead = new AllBooksRead(cConnectionString, cCoverLocation);
+            TiledDisplay cAllBooksRead = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_AllBooksRead);
+
+            //AllBooksRead cAllBooksRead = new AllBooksRead(cConnectionString, cCoverLocation);
             cAllBooksRead.Show();
         }
     }

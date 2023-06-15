@@ -1,6 +1,6 @@
 ﻿namespace FunctionalityForms
 {
-    partial class BooksReadThisYear
+    partial class TiledDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -34,9 +34,10 @@
             // 
             // tlp
             // 
+            tlp.AutoScroll = true;
             tlp.AutoSize = true;
             tlp.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            tlp.ColumnCount = 5;
+            tlp.ColumnCount = 4;
             tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
@@ -46,6 +47,7 @@
             tlp.Name = "tlp";
             tlp.Size = new Size(0, 0);
             tlp.TabIndex = 1;
+            tlp.TabStop = false;
             // 
             // tbTotal
             // 
@@ -54,11 +56,13 @@
             tbTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             tbTotal.Location = new Point(12, 12);
             tbTotal.Name = "tbTotal";
+            tbTotal.ReadOnly = true;
             tbTotal.Size = new Size(103, 28);
             tbTotal.TabIndex = 2;
             tbTotal.TextAlign = HorizontalAlignment.Center;
+            tbTotal.TabStop = false;
             // 
-            // BooksReadThisYear
+            // TiledDisplay
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -66,13 +70,14 @@
             ClientSize = new Size(1272, 824);
             Controls.Add(tbTotal);
             Controls.Add(tlp);
-            Name = "BooksReadThisYear";
-            Text = "BooksReadThisYear";
+            Name = "TiledDisplay";
+            Text = "TiledDisplay";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
+
         private TableLayoutPanel tlp;
         private TextBox tbTotal;
     }
