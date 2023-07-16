@@ -36,6 +36,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(251, 226);
             Name = "BTProd";
+            Text = "Production";
             ResumeLayout(false);
         }
 
