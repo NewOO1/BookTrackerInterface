@@ -4,9 +4,9 @@ This is a C# Winform app that manages data going into my BookTracker database as
 against the data in the database.
 
 Curent Toolset Includes:
-  - Books Read This Year
+  - View Books Read This Year
   - Update Cover image (based on book title)
-  - All Books Read in Database
+  - View All Books Read in Database
   - Add New Completed Book 
   - Add New Completion Date for Existing Book
   
