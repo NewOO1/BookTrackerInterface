@@ -10,7 +10,7 @@ Curent Toolset Includes:
   - Add New Completed Book 
   - Add New Completion Date for Existing Book
   
-BookTracker Database is a Mariadb 10 hosted locally on my network and should be changed accordingly
+The BookTracker Database is a Mariadb 10 hosted locally on my network and thus the address should be changed accordingly
 
 BookTracker_Prod :: production version of app (uses production database)
 
