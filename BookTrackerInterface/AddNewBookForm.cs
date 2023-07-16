@@ -432,6 +432,7 @@ namespace FunctionalityForms
                 cbMedium.Items.Clear();
                 tbCover.Text = string.Empty;
                 tbDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                pbCover.Image = null;
                 listBookGenre.Visible = false;
                 listBookGenre.Items.Clear();
                 //Medium Box Setup from database
@@ -440,6 +441,8 @@ namespace FunctionalityForms
                 FillSeriesListBox();
                 //Author Box Setup from database
                 FillAuthorListBox();
+                //Author Box Setup from database
+                FillGenreListBox();
             }
 
         }
