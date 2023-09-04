@@ -138,6 +138,10 @@ namespace FunctionalityForms
             }
 
             tbTotal.Text = tlp.Controls.Count.ToString();
+            double count = Convert.ToInt32(tbTotal.Text);
+            string sMonth = DateTime.Now.ToString("MM");
+            double iMonth = Convert.ToInt32(sMonth);
+            tbPerMonth.Text = (Math.Round((count / iMonth), 2).ToString());
         }
 
         private void bTrigger_Click(object sender, EventArgs e)

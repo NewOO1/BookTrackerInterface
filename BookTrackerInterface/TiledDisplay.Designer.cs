@@ -30,6 +30,9 @@
         {
             tlp = new TableLayoutPanel();
             tbTotal = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            tbPerMonth = new TextBox();
             SuspendLayout();
             // 
             // tlp
@@ -47,20 +50,52 @@
             tlp.Name = "tlp";
             tlp.Size = new Size(0, 0);
             tlp.TabIndex = 1;
-            tlp.TabStop = false;
             // 
             // tbTotal
             // 
             tbTotal.BackColor = SystemColors.Control;
             tbTotal.BorderStyle = BorderStyle.None;
             tbTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            tbTotal.Location = new Point(12, 12);
+            tbTotal.Location = new Point(304, 12);
             tbTotal.Name = "tbTotal";
             tbTotal.ReadOnly = true;
-            tbTotal.Size = new Size(103, 28);
+            tbTotal.Size = new Size(42, 28);
             tbTotal.TabIndex = 2;
-            tbTotal.TextAlign = HorizontalAlignment.Center;
             tbTotal.TabStop = false;
+            tbTotal.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(24, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(274, 30);
+            label1.TabIndex = 3;
+            label1.Text = "Total Books Read This Year ::";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(524, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(208, 30);
+            label2.TabIndex = 4;
+            label2.Text = "Average Per Month ::";
+            // 
+            // tbPerMonth
+            // 
+            tbPerMonth.BackColor = SystemColors.Control;
+            tbPerMonth.BorderStyle = BorderStyle.None;
+            tbPerMonth.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            tbPerMonth.Location = new Point(738, 12);
+            tbPerMonth.Name = "tbPerMonth";
+            tbPerMonth.ReadOnly = true;
+            tbPerMonth.Size = new Size(42, 28);
+            tbPerMonth.TabIndex = 5;
+            tbPerMonth.TabStop = false;
+            tbPerMonth.TextAlign = HorizontalAlignment.Center;
             // 
             // TiledDisplay
             // 
@@ -68,6 +103,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1272, 824);
+            Controls.Add(tbPerMonth);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(tbTotal);
             Controls.Add(tlp);
             Name = "TiledDisplay";
@@ -80,5 +118,8 @@
 
         private TableLayoutPanel tlp;
         private TextBox tbTotal;
+        private Label label1;
+        private Label label2;
+        private TextBox tbPerMonth;
     }
 }
