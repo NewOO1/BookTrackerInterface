@@ -40,13 +40,17 @@ namespace FunctionalityForms
             FillSeriesListBox();
             //Author Box Setup from database
             FillAuthorListBox();
-            //Author Box Setup from database
+            //Who Box Setup from database
             FillWhoListBox();
 
             tbDate.Validating += bookDate_Validating;
             tbNum.Validating += bookNum_Validating;
         }
 
+
+        //####################################################################################
+        //Queries the Users table in database and fills out the combobox Who
+        //####################################################################################
         private void FillWhoListBox()
         {
             string query = "SELECT NAME FROM users ORDER BY Name ASC";
@@ -310,6 +314,7 @@ namespace FunctionalityForms
             string inputTitle = tbTitle.Text.Trim();
             string inputAuthor = cbAuthor.Text.Trim();
             string inputSeries = cbSeries.Text.Trim();
+            string who = cbWho.Text.Trim();
             if (inputSeries == "") { inputSeries = null; }
             string inputNum = tbNum.Text.Trim();
             if (inputNum == "") { inputNum = null; }
@@ -318,8 +323,9 @@ namespace FunctionalityForms
             string inputGenrestring = tbGenre.Text.Trim(); //can be deliniated by ,
             string[] inputGenre = inputGenrestring.Split(',');
             string inputDate = tbDate.Text.Trim();
-            string who = "Seth"; //Seth = 1, Em = 2 for SQL
+            //string who = "Seth"; //Seth = 1, Em = 2 for SQL
             if (who == "Seth") { who = "1"; }
+            if (who == "Em") { who = "2"; }
             string inputMedium = cbMedium.Text.Trim();
 
             if (inputTitle == "" || inputAuthor == "" || inputGenrestring == "" || inputMedium == "" || inputCoverURL == "" || inputDate == "")
@@ -355,8 +361,8 @@ namespace FunctionalityForms
                     connection.Open();
 
                     // Insert into books table
-                    string insertBooksSql = "INSERT INTO books (name, author, series_name, book_number_in_series, image_url, who) " +
-                                            "VALUES (@name, @author, @seriesName, @bookNumber, @cover, @who)";
+                    string insertBooksSql = "INSERT INTO books (name, author, series_name, book_number_in_series, image_url) " +
+                                            "VALUES (@name, @author, @seriesName, @bookNumber, @cover)";
 
                     using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBooksSql, connection))
                     {
@@ -365,7 +371,6 @@ namespace FunctionalityForms
                         command.Parameters.AddWithValue("@seriesName", inputSeries);
                         command.Parameters.AddWithValue("@bookNumber", inputNum);
                         command.Parameters.AddWithValue("@cover", newCoverFileName);
-                        command.Parameters.AddWithValue("@who", 1);
 
                         int rowsAffected = command.ExecuteNonQuery();
 
@@ -404,12 +409,13 @@ namespace FunctionalityForms
 
 
                     // Insert into book_history table
-                    string insertBookHistorySql = "INSERT INTO book_history (book_id, finished_date) " +
-                                                  "VALUES (LAST_INSERT_ID(), @finishedDate)";
+                    string insertBookHistorySql = "INSERT INTO book_history (book_id, finished_date, user_id) " +
+                                                  "VALUES (LAST_INSERT_ID(), @finishedDate, @userID)";
 
                     using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBookHistorySql, connection))
                     {
                         command.Parameters.AddWithValue("@finishedDate", inputDate);
+                        command.Parameters.AddWithValue("@userID", who);
 
                         int rowsAffected = command.ExecuteNonQuery();
 

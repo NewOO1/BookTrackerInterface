@@ -13,26 +13,55 @@ namespace ConnectionClass
 
         public AddNewBookForm cAddNewBookForm;
 
-        public string cSQLQuery_AllBooksRead = @"SELECT b.name as Title, 
+        public string cSQLQuery_AllBooksReadSeth = @"SELECT b.name as Title, 
                                                  b.author as Author, 
                                                  b.series_name as SeriesName, 
                                                  b.book_number_in_series as BookNumber,
                                                  b.image_url as CoverFilepath,
-                                                 h.finished_date as FinishedDate
+                                                 h.finished_date as FinishedDate,
+                                                 h.user_id as Who
                                          FROM books b
                                          JOIN book_history h ON b.id = h.book_id
+                                         WHERE h.user_id = 1
                                          GROUP BY b.id, h.finished_date
                                          ORDER BY h.finished_date ASC";
 
-        public string cSQLQuery_BooksReadThisYear = @"SELECT b.name as Title, 
+        public string cSQLQuery_BooksReadThisYearSeth = @"SELECT b.name as Title, 
                                                  b.author as Author, 
                                                  b.series_name as SeriesName, 
                                                  b.book_number_in_series as BookNumber,
                                                  b.image_url as CoverFilepath,
-                                                 h.finished_date as FinishedDate
+                                                 h.finished_date as FinishedDate,
+                                                 h.user_id as Who
                                          FROM books b
                                          JOIN book_history h ON b.id = h.book_id
-                                         WHERE YEAR(h.finished_date) = YEAR(CURDATE())
+                                         WHERE YEAR(h.finished_date) = YEAR(CURDATE()) AND h.user_id = 1
+                                         GROUP BY b.id, h.finished_date
+                                         ORDER BY h.finished_date ASC";
+
+        public string cSQLQuery_AllBooksReadEm = @"SELECT b.name as Title, 
+                                                 b.author as Author, 
+                                                 b.series_name as SeriesName, 
+                                                 b.book_number_in_series as BookNumber,
+                                                 b.image_url as CoverFilepath,
+                                                 h.finished_date as FinishedDate,
+                                                 h.user_id as Who
+                                         FROM books b
+                                         JOIN book_history h ON b.id = h.book_id
+                                         WHERE h.user_id = 2
+                                         GROUP BY b.id, h.finished_date
+                                         ORDER BY h.finished_date ASC";
+
+        public string cSQLQuery_BooksReadThisYearEm = @"SELECT b.name as Title, 
+                                                 b.author as Author, 
+                                                 b.series_name as SeriesName, 
+                                                 b.book_number_in_series as BookNumber,
+                                                 b.image_url as CoverFilepath,
+                                                 h.finished_date as FinishedDate,
+                                                 h.user_id as Who
+                                         FROM books b
+                                         JOIN book_history h ON b.id = h.book_id
+                                         WHERE YEAR(h.finished_date) = YEAR(CURDATE()) AND h.user_id = 2
                                          GROUP BY b.id, h.finished_date
                                          ORDER BY h.finished_date ASC";
 
@@ -80,7 +109,7 @@ namespace ConnectionClass
 
         private void bBooksReadThisYear_Click(object sender, EventArgs e)
         {
-            TiledDisplay cBooksReadThisYear = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_BooksReadThisYear);
+            TiledDisplay cBooksReadThisYear = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_BooksReadThisYearSeth);
 
             //BooksReadThisYear cBooksReadThisYear = new BooksReadThisYear(cConnectionString, cCoverLocation);
             cBooksReadThisYear.Show();
@@ -88,10 +117,26 @@ namespace ConnectionClass
 
         private void bAllBooks_Click(object sender, EventArgs e)
         {
-            TiledDisplay cAllBooksRead = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_AllBooksRead);
+            TiledDisplay cAllBooksRead = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_AllBooksReadSeth);
 
             //AllBooksRead cAllBooksRead = new AllBooksRead(cConnectionString, cCoverLocation);
             cAllBooksRead.Show();
+        }
+
+        private void bAllBooksEm_Click(object sender, EventArgs e)
+        {
+            TiledDisplay cAllBooksRead = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_AllBooksReadEm);
+
+            //AllBooksRead cAllBooksRead = new AllBooksRead(cConnectionString, cCoverLocation);
+            cAllBooksRead.Show();
+        }
+
+        private void bBooksReadThisYearEm_Click(object sender, EventArgs e)
+        {
+            TiledDisplay cBooksReadThisYear = new TiledDisplay(cConnectionString, cCoverLocation, cSQLQuery_BooksReadThisYearEm);
+
+            //BooksReadThisYear cBooksReadThisYear = new BooksReadThisYear(cConnectionString, cCoverLocation);
+            cBooksReadThisYear.Show();
         }
     }
 }

@@ -26,9 +26,38 @@ namespace FunctionalityForms
             FillMediumListBox();
             //Medium Box Setup from database
             FillTitleComboBox();
+            //Who Box Setup from database
+            FillWhoComboBox();
 
             tbDate.Validating += bookDate_Validating;
 
+        }
+
+        //####################################################################################
+        //Queries the Users table in database and fills out the combobox Who
+        //####################################################################################
+        private void FillWhoComboBox()
+        {
+            string query = "SELECT NAME FROM users ORDER BY Name ASC";
+
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
+            {
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (MySql.Data.MySqlClient.MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string whoName = reader.GetString("NAME");
+                            cbWho.Items.Add(whoName); // Add each meidum name to the ListBox
+                        }
+                    }
+
+                    conn.Close(); // Close the database connection
+                }
+            }
         }
 
         //####################################################################################
@@ -59,7 +88,7 @@ namespace FunctionalityForms
         //####################################################################################
         private void FillTitleComboBox()
         {
-            string query = "SELECT * FROM books WHERE id NOT IN (SELECT book_id FROM book_history);";
+            string query = "SELECT * FROM books ORDER BY name;";
 
             using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
             {
@@ -145,6 +174,10 @@ namespace FunctionalityForms
             string inputTitle = cbTitle.Text.Trim();
             string inputDate = tbDate.Text.Trim();
             string inputMedium = cbMedium.Text.Trim();
+            string inputWho = cbWho.Text.Trim();
+
+            if (inputWho == "Seth") { inputWho = "1"; }
+            if (inputWho == "Em") { inputWho = "2"; }
 
 
             if (inputTitle == "" || inputDate == "" || inputMedium == "")
@@ -163,13 +196,14 @@ namespace FunctionalityForms
                 {
                     connection.Open();
 
-                    string insertBooksSql = "INSERT INTO book_history (book_id, finished_date) VALUES ((SELECT id FROM books WHERE name = @name), @FinishDate);";
-                    
+                    string insertBooksSql = "INSERT INTO book_history (book_id, finished_date, user_id) VALUES ((SELECT id FROM books WHERE name = @name), @FinishDate, @Who);";
+
                     using (MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(insertBooksSql, connection))
                     {
                         command.Parameters.AddWithValue("@name", inputTitle);
                         command.Parameters.AddWithValue("@FinishDate", inputDate);
                         //command.Parameters.AddWithValue("@medium", inputMedium);
+                        command.Parameters.AddWithValue("@Who", inputWho);
 
 
 
@@ -212,6 +246,7 @@ namespace FunctionalityForms
                 cbTitle.Text = string.Empty;
                 tbDate.Text = string.Empty;
                 cbMedium.Text = string.Empty;
+                cbWho.Text = string.Empty;
                 //Medium Box Setup from database
                 FillMediumListBox();
                 //Series Box Setup from database

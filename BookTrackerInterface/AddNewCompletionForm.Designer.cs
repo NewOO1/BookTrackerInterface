@@ -35,6 +35,8 @@
             tbDate = new TextBox();
             cbMedium = new ComboBox();
             bSubmit = new Button();
+            cbWho = new ComboBox();
+            labelWho = new Label();
             SuspendLayout();
             // 
             // labelTitle
@@ -69,6 +71,8 @@
             // 
             // cbTitle
             // 
+            cbTitle.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbTitle.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbTitle.FormattingEnabled = true;
             cbTitle.Location = new Point(100, 20);
             cbTitle.Name = "cbTitle";
@@ -84,6 +88,8 @@
             // 
             // cbMedium
             // 
+            cbMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbMedium.FormattingEnabled = true;
             cbMedium.Location = new Point(100, 78);
             cbMedium.Name = "cbMedium";
@@ -92,7 +98,7 @@
             // 
             // bSubmit
             // 
-            bSubmit.Location = new Point(15, 114);
+            bSubmit.Location = new Point(17, 141);
             bSubmit.Name = "bSubmit";
             bSubmit.Size = new Size(75, 23);
             bSubmit.TabIndex = 6;
@@ -100,11 +106,33 @@
             bSubmit.UseVisualStyleBackColor = true;
             bSubmit.Click += bSubmit_Click;
             // 
+            // cbWho
+            // 
+            cbWho.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbWho.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbWho.FormattingEnabled = true;
+            cbWho.Location = new Point(100, 107);
+            cbWho.Name = "cbWho";
+            cbWho.Size = new Size(121, 23);
+            cbWho.TabIndex = 8;
+            // 
+            // labelWho
+            // 
+            labelWho.AutoSize = true;
+            labelWho.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            labelWho.Location = new Point(17, 110);
+            labelWho.Name = "labelWho";
+            labelWho.Size = new Size(40, 20);
+            labelWho.TabIndex = 7;
+            labelWho.Text = "Who";
+            // 
             // AddNewCompletionForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(387, 149);
+            ClientSize = new Size(387, 196);
+            Controls.Add(cbWho);
+            Controls.Add(labelWho);
             Controls.Add(bSubmit);
             Controls.Add(cbMedium);
             Controls.Add(tbDate);
@@ -127,5 +155,7 @@
         private TextBox tbDate;
         private ComboBox cbMedium;
         private Button bSubmit;
+        private ComboBox cbWho;
+        private Label labelWho;
     }
 }

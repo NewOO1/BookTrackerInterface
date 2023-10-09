@@ -19,7 +19,6 @@ CREATE TABLE books (
     series_name VARCHAR(255),
     book_number_in_series INT,
     image_url VARCHAR(255),
-    who int(11) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (genre_id) REFERENCES genres(id)   
 )
@@ -28,8 +27,10 @@ CREATE TABLE book_history (
     id INT AUTO_INCREMENT PRIMARY KEY,
     book_id INT NOT NULL,
     finished_date DATE NOT NULL,
+    user_id INT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (book_id) REFERENCES books(id)
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 )
 
 CREATE TABLE book_genre_associations (

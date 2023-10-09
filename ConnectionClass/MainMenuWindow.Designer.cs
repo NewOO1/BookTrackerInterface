@@ -31,15 +31,17 @@
             bAddNewBook = new Button();
             bUpdateCover = new Button();
             bAddNewCompletion = new Button();
-            bBooksReadThisYear = new Button();
-            bAllBooks = new Button();
+            bBooksReadThisYearSeth = new Button();
+            bAllBooksSeth = new Button();
+            bBooksReadThisYearEm = new Button();
+            bAllBooksEm = new Button();
             SuspendLayout();
             // 
             // bAddNewBook
             // 
             bAddNewBook.Location = new Point(12, 13);
             bAddNewBook.Name = "bAddNewBook";
-            bAddNewBook.Size = new Size(133, 23);
+            bAddNewBook.Size = new Size(167, 23);
             bAddNewBook.TabIndex = 0;
             bAddNewBook.Text = "Add New Book";
             bAddNewBook.UseVisualStyleBackColor = true;
@@ -49,7 +51,7 @@
             // 
             bUpdateCover.Location = new Point(12, 72);
             bUpdateCover.Name = "bUpdateCover";
-            bUpdateCover.Size = new Size(133, 23);
+            bUpdateCover.Size = new Size(167, 23);
             bUpdateCover.TabIndex = 1;
             bUpdateCover.Text = "Update Covers";
             bUpdateCover.UseVisualStyleBackColor = true;
@@ -59,39 +61,61 @@
             // 
             bAddNewCompletion.Location = new Point(12, 42);
             bAddNewCompletion.Name = "bAddNewCompletion";
-            bAddNewCompletion.Size = new Size(133, 24);
+            bAddNewCompletion.Size = new Size(167, 24);
             bAddNewCompletion.TabIndex = 2;
             bAddNewCompletion.Text = "Add New Completion";
             bAddNewCompletion.UseVisualStyleBackColor = true;
             bAddNewCompletion.Click += bAddNewCompletion_Click;
             // 
-            // bBooksReadThisYear
+            // bBooksReadThisYearSeth
             // 
-            bBooksReadThisYear.Location = new Point(12, 101);
-            bBooksReadThisYear.Name = "bBooksReadThisYear";
-            bBooksReadThisYear.Size = new Size(133, 23);
-            bBooksReadThisYear.TabIndex = 3;
-            bBooksReadThisYear.Text = "Books Read This Year";
-            bBooksReadThisYear.UseVisualStyleBackColor = true;
-            bBooksReadThisYear.Click += bBooksReadThisYear_Click;
+            bBooksReadThisYearSeth.Location = new Point(12, 159);
+            bBooksReadThisYearSeth.Name = "bBooksReadThisYearSeth";
+            bBooksReadThisYearSeth.Size = new Size(167, 23);
+            bBooksReadThisYearSeth.TabIndex = 3;
+            bBooksReadThisYearSeth.Text = "Books Read This Year [Seth]\r\n\r\n";
+            bBooksReadThisYearSeth.UseVisualStyleBackColor = true;
+            bBooksReadThisYearSeth.Click += bBooksReadThisYear_Click;
             // 
-            // bAllBooks
+            // bAllBooksSeth
             // 
-            bAllBooks.Location = new Point(12, 130);
-            bAllBooks.Name = "bAllBooks";
-            bAllBooks.Size = new Size(133, 23);
-            bAllBooks.TabIndex = 4;
-            bAllBooks.Text = "All Books Read";
-            bAllBooks.UseVisualStyleBackColor = true;
-            bAllBooks.Click += bAllBooks_Click;
+            bAllBooksSeth.Location = new Point(12, 188);
+            bAllBooksSeth.Name = "bAllBooksSeth";
+            bAllBooksSeth.Size = new Size(167, 23);
+            bAllBooksSeth.TabIndex = 4;
+            bAllBooksSeth.Text = "All Books Read [Seth]";
+            bAllBooksSeth.UseVisualStyleBackColor = true;
+            bAllBooksSeth.Click += bAllBooks_Click;
+            // 
+            // bBooksReadThisYearEm
+            // 
+            bBooksReadThisYearEm.Location = new Point(12, 101);
+            bBooksReadThisYearEm.Name = "bBooksReadThisYearEm";
+            bBooksReadThisYearEm.Size = new Size(167, 23);
+            bBooksReadThisYearEm.TabIndex = 5;
+            bBooksReadThisYearEm.Text = "Books Read This Year [Em]";
+            bBooksReadThisYearEm.UseVisualStyleBackColor = true;
+            bBooksReadThisYearEm.Click += bBooksReadThisYearEm_Click;
+            // 
+            // bAllBooksEm
+            // 
+            bAllBooksEm.Location = new Point(12, 130);
+            bAllBooksEm.Name = "bAllBooksEm";
+            bAllBooksEm.Size = new Size(167, 23);
+            bAllBooksEm.TabIndex = 6;
+            bAllBooksEm.Text = "All Books Read [Em]";
+            bAllBooksEm.UseVisualStyleBackColor = true;
+            bAllBooksEm.Click += bAllBooksEm_Click;
             // 
             // MainMenuWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(261, 248);
-            Controls.Add(bAllBooks);
-            Controls.Add(bBooksReadThisYear);
+            Controls.Add(bAllBooksEm);
+            Controls.Add(bBooksReadThisYearEm);
+            Controls.Add(bAllBooksSeth);
+            Controls.Add(bBooksReadThisYearSeth);
             Controls.Add(bAddNewCompletion);
             Controls.Add(bUpdateCover);
             Controls.Add(bAddNewBook);
@@ -105,7 +129,9 @@
         private Button bAddNewBook;
         private Button bUpdateCover;
         private Button bAddNewCompletion;
-        private Button bBooksReadThisYear;
-        private Button bAllBooks;
+        private Button bBooksReadThisYearSeth;
+        private Button bAllBooksSeth;
+        private Button bBooksReadThisYearEm;
+        private Button bAllBooksEm;
     }
 }
