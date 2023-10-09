@@ -50,6 +50,8 @@
             bCoverFile = new Button();
             tbCover = new TextBox();
             pbCover = new PictureBox();
+            labelWho = new Label();
+            cbWho = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pbCover).BeginInit();
             SuspendLayout();
             // 
@@ -167,7 +169,7 @@
             cbMedium.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbMedium.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbMedium.FormattingEnabled = true;
-            cbMedium.Location = new Point(233, 420);
+            cbMedium.Location = new Point(234, 396);
             cbMedium.Name = "cbMedium";
             cbMedium.Size = new Size(119, 23);
             cbMedium.TabIndex = 13;
@@ -176,7 +178,7 @@
             // 
             labelMedium.AutoSize = true;
             labelMedium.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            labelMedium.Location = new Point(56, 423);
+            labelMedium.Location = new Point(56, 396);
             labelMedium.Name = "labelMedium";
             labelMedium.Size = new Size(64, 20);
             labelMedium.TabIndex = 12;
@@ -247,11 +249,33 @@
             pbCover.TabIndex = 23;
             pbCover.TabStop = false;
             // 
+            // labelWho
+            // 
+            labelWho.AutoSize = true;
+            labelWho.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            labelWho.Location = new Point(56, 437);
+            labelWho.Name = "labelWho";
+            labelWho.Size = new Size(40, 20);
+            labelWho.TabIndex = 24;
+            labelWho.Text = "Who";
+            // 
+            // cbWho
+            // 
+            cbWho.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbWho.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbWho.FormattingEnabled = true;
+            cbWho.Location = new Point(234, 437);
+            cbWho.Name = "cbWho";
+            cbWho.Size = new Size(119, 23);
+            cbWho.TabIndex = 25;
+            // 
             // AddNewBookForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(512, 569);
+            Controls.Add(cbWho);
+            Controls.Add(labelWho);
             Controls.Add(pbCover);
             Controls.Add(tbCover);
             Controls.Add(bCoverFile);
@@ -303,5 +327,7 @@
         private Button bCoverFile;
         private TextBox tbCover;
         private PictureBox pbCover;
+        private Label labelWho;
+        private ComboBox cbWho;
     }
 }

@@ -40,9 +40,35 @@ namespace FunctionalityForms
             FillSeriesListBox();
             //Author Box Setup from database
             FillAuthorListBox();
+            //Author Box Setup from database
+            FillWhoListBox();
 
             tbDate.Validating += bookDate_Validating;
             tbNum.Validating += bookNum_Validating;
+        }
+
+        private void FillWhoListBox()
+        {
+            string query = "SELECT NAME FROM users ORDER BY Name ASC";
+
+            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(cConnectionString))
+            {
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn))
+                {
+                    conn.Open();
+
+                    using (MySql.Data.MySqlClient.MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string whoName = reader.GetString("NAME");
+                            cbWho.Items.Add(whoName); // Add each meidum name to the ListBox
+                        }
+                    }
+
+                    conn.Close(); // Close the database connection
+                }
+            }
         }
 
         private bool listBoxVisible = false;
