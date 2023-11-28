@@ -11,6 +11,7 @@ Curent Toolset Includes:
   - Add New Completion Date for Existing Book
   
 The BookTracker Database is a Mariadb 10 hosted locally on my network and thus the address should be changed accordingly
+  - Database scheme is location in TableCreationQueries.txt
 
 BookTracker_Prod :: production version of app (uses production database)
 
